@@ -1,0 +1,28 @@
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Testing & Notebook Checkpoints
+.pytest_cache/
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+*/__pycache__/
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Empty legacy subfolder lock
+/ML-Project--Student-Dropout-Prediction--main/

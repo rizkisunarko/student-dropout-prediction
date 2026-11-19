@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prediksi Status Akademik Mahasiswa — Kondisi Sosial-Ekonomi (Langkah 3 / 5)</title>
+<!-- Google Fonts: Inter and DotGothic16 (for authentic retro dot-matrix pixel font) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&amp;family=Inter:wght@400;500;600;700&amp;family=Silkscreen&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            pixel: ['"DotGothic16"', '"Silkscreen"', 'monospace'],
+          },
+          colors: {
+            panelBg: 'rgba(40, 40, 42, 0.55)',
+            panelBorder: 'rgba(255, 255, 255, 0.16)',
+            secondaryText: '#8E8E8E',
+            inputBg: 'rgba(255, 255, 255, 0.06)',
+            inputBorder: 'rgba(255, 255, 255, 0.14)',
+          }
+        }
+      }
+    };
+  </script>
+<style data-purpose="custom-scrollbars">
+    /* Subtle custom scrollbar to match sleek cinematic glass aesthetic */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+<style data-purpose="lighting-effects">
+    /* Subtle radial background vignette */
+    .bg-radial-vignette {
+      background: radial-gradient(circle at 50% 25%, #141416 0%, #000000 80%);
+    }
+    /* Soft button glow */
+    .btn-glow {
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.28);
+    }
+  </style>
+</head>
+<body class="bg-black bg-radial-vignette text-white font-sans min-h-screen flex flex-col items-center justify-center p-4 antialiased selection:bg-white selection:text-black">
+<!-- BEGIN: TopNavigation -->
+<header class="w-full flex items-center justify-center gap-3.5 mb-7" data-purpose="page-header">
+<!-- Academic Cap Logo Button -->
+<div class="w-[46px] h-[46px] rounded-full bg-white flex items-center justify-center text-black shadow-lg" data-purpose="brand-icon">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.5l-7-3.82V17c0 2.76 3.13 5 7 5s7-2.24 7-5v-4.32l-7 3.82z"></path>
+</svg>
+</div>
+<!-- Navigation Capsule -->
+<nav class="h-[48px] px-7 bg-white rounded-full flex items-center justify-center gap-6 shadow-md" data-purpose="pill-navigation">
+<a class="text-[14px] font-medium text-[#2E2E2E] opacity-50 hover:opacity-80 transition-opacity" href="#">
+        Beranda
+      </a>
+<div class="flex flex-col items-center justify-center">
+<a class="text-[14px] font-semibold text-[#2E2E2E] leading-tight" href="#">
+          Prediksi
+        </a>
+<!-- Three centered sub-dots for active state -->
+<span aria-hidden="true" class="flex items-center gap-[2.5px] mt-0.5">
+<span class="w-1 h-1 rounded-full bg-[#2E2E2E]"></span>
+<span class="w-1 h-1 rounded-full bg-[#2E2E2E]"></span>
+<span class="w-1 h-1 rounded-full bg-[#2E2E2E]"></span>
+</span>
+</div>
+</nav>
+</header>
+<!-- END: TopNavigation -->
+<!-- BEGIN: MainGlassPanel -->
+<main class="w-[760px] h-[600px] rounded-[28px] bg-panelBg border border-panelBorder backdrop-blur-[18px] shadow-[0_20px_60px_rgba(0,0,0,0.45)] flex flex-col p-8 overflow-hidden relative" data-purpose="form-container">
+<!-- BEGIN: PanelHeader -->
+<section class="flex items-start justify-between mb-4 flex-shrink-0" data-purpose="panel-header">
+<div>
+<h1 class="font-pixel text-[26px] tracking-wide text-white uppercase leading-tight select-none">
+          Kondisi Sosial-Ekonomi
+        </h1>
+<p class="text-[12.5px] text-secondaryText mt-1 font-medium">
+          Latar belakang keluarga dan kondisi finansial mahasiswa.
+        </p>
+</div>
+<div class="text-[12.5px] font-medium text-secondaryText tracking-wide" data-purpose="step-counter">
+        Langkah 3 / 5
+      </div>
+</section>
+<!-- END: PanelHeader -->
+<!-- BEGIN: ProgressIndicator -->
+<section class="mb-5 flex-shrink-0" data-purpose="stepper-progress">
+<!-- Continuous Progress Bar Track (60% fill for Step 3) -->
+<div class="w-full h-[2px] bg-white/10 rounded-full mb-3 overflow-hidden">
+<div class="h-full bg-white rounded-full transition-all duration-300" style="width: 60%;"></div>
+</div>
+<!-- Stepper Item Dots & Text -->
+<div class="flex items-center justify-between text-[11px] text-secondaryText select-none">
+<!-- Step 1: Demografi (Completed) -->
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-white/60"></span>
+<span>Demografi</span>
+</div>
+<!-- Step 2: Pendaftaran (Completed) -->
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-white/60"></span>
+<span>Pendaftaran</span>
+</div>
+<!-- Step 3: Sosial-Ekonomi (Active) -->
+<div class="flex items-center gap-2 text-white font-medium">
+<span class="w-[22px] h-[6px] rounded-full bg-white"></span>
+<span>Sosial-Ekonomi</span>
+</div>
+<!-- Step 4: Semester 1 (Upcoming) -->
+<div class="flex items-center gap-2 text-white/35">
+<span class="w-2 h-2 rounded-full bg-white/25"></span>
+<span>Semester 1</span>
+</div>
+<!-- Step 5: Makroekonomi (Upcoming) -->
+<div class="flex items-center gap-2 text-white/35">
+<span class="w-2 h-2 rounded-full bg-white/25"></span>
+<span>Makroekonomi</span>
+</div>
+</div>
+</section>
+<!-- END: ProgressIndicator -->
+<!-- BEGIN: FormFieldsGrid -->
+<div class="flex-1 overflow-y-auto custom-scroll pr-1.5 space-y-4" data-purpose="form-fields-scroll-area">
+<!-- Row 1: Qualifications -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Mother's qualification -->
+<div class="flex flex-col gap-1.5" data-purpose="input-group">
+<div class="flex items-center justify-between">
+<label class="text-[12.5px] font-medium text-secondaryText">Kualifikasi Ibu</label>
+<span class="text-[11px] text-white/30 font-normal">Mother's qualification</span>
+</div>
+<div class="relative">
+<select class="w-full h-[46px] rounded-[14px] bg-inputBg border border-inputBorder text-white text-[13.5px] px-3.5 appearance-none focus:outline-none focus:border-white/40 focus:ring-0 cursor-pointer pr-10">
+<option class="bg-[#1f1f21] text-secondaryText" disabled="" selected="" value="">Pilih…</option>
+<option class="bg-[#1f1f21] text-white" value="1">Pendidikan Dasar (SD/SMP)</option>
+<option class="bg-[#1f1f21] text-white" value="2">Pendidikan Menengah (SMA/SMK)</option>
+<option class="bg-[#1f1f21] text-white" value="3">Pendidikan Tinggi (Diploma/Sarjana)</option>
+<option class="bg-[#1f1f21] text-white" value="4">Pascasarjana (Magister/Doktor)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-3.5 flex items-center text-white/40">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Father's qualification -->
+<div class="flex flex-col gap-1.5" data-purpose="input-group">
+<div class="flex items-center justify-between">
+<label class="text-[12.5px] font-medium text-secondaryText">Kualifikasi Ayah</label>
+<span class="text-[11px] text-white/30 font-normal">Father's qualification</span>
+</div>
+<div class="relative">
+<select class="w-full h-[46px] rounded-[14px] bg-inputBg border border-inputBorder text-white text-[13.5px] px-3.5 appearance-none focus:outline-none focus:border-white/40 focus:ring-0 cursor-pointer pr-10">
+<option class="bg-[#1f1f21] text-secondaryText" disabled="" selected="" value="">Pilih…</option>
+<option class="bg-[#1f1f21] text-white" value="1">Pendidikan Dasar (SD/SMP)</option>
+<option class="bg-[#1f1f21] text-white" value="2">Pendidikan Menengah (SMA/SMK)</option>
+<option class="bg-[#1f1f21] text-white" value="3">Pendidikan Tinggi (Diploma/Sarjana)</option>
+<option class="bg-[#1f1f21] text-white" value="4">Pascasarjana (Magister/Doktor)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-3.5 flex items-center text-white/40">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Row 2: Occupations -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Mother's occupation -->
+<div class="flex flex-col gap-1.5" data-purpose="input-group">
+<div class="flex items-center justify-between">
+<label class="text-[12.5px] font-medium text-secondaryText">Pekerjaan Ibu</label>
+<span class="text-[11px] text-white/30 font-normal">Mother's occupation</span>
+</div>
+<div class="relative">
+<select class="w-full h-[46px] rounded-[14px] bg-inputBg border border-inputBorder text-white text-[13.5px] px-3.5 appearance-none focus:outline-none focus:border-white/40 focus:ring-0 cursor-pointer pr-10">
+<option class="bg-[#1f1f21] text-secondaryText" disabled="" selected="" value="">Pilih…</option>
+<option class="bg-[#1f1f21] text-white" value="1">Ibu Rumah Tangga</option>
+<option class="bg-[#1f1f21] text-white" value="2">Pegawai Negeri / BUMN</option>
+<option class="bg-[#1f1f21] text-white" value="3">Karyawan Swasta</option>
+<option class="bg-[#1f1f21] text-white" value="4">Wiraswasta / Profesional</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-3.5 flex items-center text-white/40">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Father's occupation -->
+<div class="flex flex-col gap-1.5" data-purpose="input-group">
+<div class="flex items-center justify-between">
+<label class="text-[12.5px] font-medium text-secondaryText">Pekerjaan Ayah</label>
+<span class="text-[11px] text-white/30 font-normal">Father's occupation</span>
+</div>
+<div class="relative">
+<select class="w-full h-[46px] rounded-[14px] bg-inputBg border border-inputBorder text-white text-[13.5px] px-3.5 appearance-none focus:outline-none focus:border-white/40 focus:ring-0 cursor-pointer pr-10">
+<option class="bg-[#1f1f21] text-secondaryText" disabled="" selected="" value="">Pilih…</option>
+<option class="bg-[#1f1f21] text-white" value="1">Pegawai Negeri / BUMN</option>
+<option class="bg-[#1f1f21] text-white" value="2">Karyawan Swasta</option>
+<option class="bg-[#1f1f21] text-white" value="3">Wiraswasta / Profesional</option>
+<option class="bg-[#1f1f21] text-white" value="4">Petani / Buruh</option>
+<option class="bg-[#1f1f21] text-white" value="5">Pensiunan</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-3.5 flex items-center text-white/40">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Row 3: Financial Status & Tuition -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Debtor status -->
+<div class="flex flex-col gap-1.5" data-purpose="input-group">
+<div class="flex items-center justify-between">
+<label class="text-[12.5px] font-medium text-secondaryText">Status Hutang</label>
+<span class="text-[11px] text-white/30 font-normal">Debtor</span>
+</div>
+<div class="h-[46px] p-1 bg-inputBg border border-inputBorder rounded-[14px] grid grid-cols-2 gap-1 text-[13px] font-medium">
+<button class="rounded-[10px] flex items-center justify-center text-white/70 hover:text-white transition-colors" type="button">
+              Ya
+            </button>
+<button class="rounded-[10px] flex items-center justify-center text-white/70 hover:text-white transition-colors" type="button">
+              Tidak
+            </button>
+</div>
+</div>
+<!-- Tuition fees status -->
+<div class="flex flex-col gap-1.5" data-purpose="input-group">
+<div class="flex items-center justify-between">
+<label class="text-[12.5px] font-medium text-secondaryText">Uang Kuliah Terbayar</label>
+<span class="text-[11px] text-white/30 font-normal">Tuition fees up to date</span>
+</div>
+<div class="h-[46px] p-1 bg-inputBg border border-inputBorder rounded-[14px] grid grid-cols-2 gap-1 text-[13px] font-medium">
+<button class="rounded-[10px] flex items-center justify-center text-white/70 hover:text-white transition-colors" type="button">
+              Ya
+            </button>
+<button class="rounded-[10px] flex items-center justify-center text-white/70 hover:text-white transition-colors" type="button">
+              Tidak
+            </button>
+</div>
+</div>
+</div>
+<!-- Row 4: Scholarship holder -->
+<div class="grid grid-cols-2 gap-4 pb-2">
+<div class="flex flex-col gap-1.5" data-purpose="input-group">
+<div class="flex items-center justify-between">
+<label class="text-[12.5px] font-medium text-secondaryText">Penerima Beasiswa</label>
+<span class="text-[11px] text-white/30 font-normal">Scholarship holder</span>
+</div>
+<div class="h-[46px] p-1 bg-inputBg border border-inputBorder rounded-[14px] grid grid-cols-2 gap-1 text-[13px] font-medium">
+<button class="rounded-[10px] flex items-center justify-center text-white/70 hover:text-white transition-colors" type="button">
+              Ya
+            </button>
+<button class="rounded-[10px] flex items-center justify-center text-white/70 hover:text-white transition-colors" type="button">
+              Tidak
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- END: FormFieldsGrid -->
+<!-- BEGIN: PanelBottomActions -->
+<footer class="pt-4 border-t border-white/[0.08] flex items-center justify-between flex-shrink-0" data-purpose="action-buttons">
+<!-- Kembali Ghost Pill Button -->
+<button class="px-[22px] py-[10px] rounded-full border border-white/15 text-[#C8C8C8] text-[13px] font-medium hover:bg-white/[0.06] hover:text-white transition-all flex items-center gap-2 group" type="button">
+<svg class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Kembali</span>
+</button>
+<!-- Lanjut Solid White Pill Button -->
+<button class="px-7 py-[10px] rounded-full bg-white text-black font-semibold text-[13.5px] flex items-center gap-2 hover:bg-gray-100 transition-all btn-glow group" type="button">
+<span>Lanjut</span>
+<svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</footer>
+<!-- END: PanelBottomActions -->
+</main>
+<!-- END: MainGlassPanel -->
+</body></html>

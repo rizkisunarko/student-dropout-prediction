@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediksi Status Akademik Mahasiswa — Memproses Prediksi</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: #8e8e8e;
+      --nav-text: #2e2e2e;
+      --pill-dark: #28282a;
+      --nav-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+      --font-display: "BubbledotICG-FinePos", monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --glass-bg: rgba(40, 40, 42, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Video Background & Cinematic Vignette */
+    .bg-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+      background: #000000;
+    }
+
+    .bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: bgDrift 28s ease-in-out infinite alternate;
+      opacity: 0.85;
+    }
+
+    @keyframes bgDrift {
+      0% {
+        transform: scale(1.04) translate(0, 0);
+      }
+      100% {
+        transform: scale(1.12) translate(-1%, -1%);
+      }
+    }
+
+    .bg-container::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.88) 100%);
+      opacity: 0.85;
+    }
+
+    /* Page Layout */
+    .page {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(16px, 2.4vh, 28px) clamp(14px, 3vw, 32px);
+    }
+
+    /* Header */
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(18px, 2.8vw, 28px);
+      flex-shrink: 0;
+      animation: slideDown 0.7s var(--ease) both;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-btn {
+      width: clamp(40px, 4.4vw, 46px);
+      height: clamp(40px, 4.4vw, 46px);
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: var(--nav-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.3s var(--ease);
+      flex-shrink: 0;
+    }
+
+    .logo-btn:hover {
+      transform: scale(1.04);
+    }
+
+    .logo-btn svg {
+      width: 72%;
+      height: 72%;
+      stroke: #111111;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      transition: transform 0.3s var(--ease);
+    }
+
+    .logo-btn:hover svg {
+      transform: rotate(-8deg);
+    }
+
+    .nav-pill {
+      background: #ffffff;
+      height: clamp(44px, 5.2vw, 48px);
+      width: 280px;
+      max-width: 280px;
+      border-radius: 999px;
+      box-shadow: var(--nav-shadow);
+      display: flex;
+      align-items: center;
+      padding: 4px 8px;
+      position: relative;
+    }
+
+    .nav-link {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--nav-text);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.25s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-link:hover {
+      opacity: 0.75;
+    }
+
+    .nav-link.active {
+      opacity: 1;
+    }
+
+    /* 3-dot indicator under Prediksi */
+    .nav-dots {
+      position: absolute;
+      bottom: 6px;
+      left: 75%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: #000000;
+      box-shadow: -5px 0 0 #000000, 5px 0 0 #000000;
+      pointer-events: none;
+    }
+
+    /* Main Stage */
+    .stage {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 20px 0;
+    }
+
+    /* Loading Card (Glass Panel 420px) */
+    .loading-panel {
+      width: min(420px, 100%);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--glass-shadow);
+      padding: 44px 36px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: panelIn 0.7s var(--ease) both;
+    }
+
+    @keyframes panelIn {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+        filter: blur(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    /* Grid of 24 Dots (8 cols x 3 rows) */
+    .forest-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 10px);
+      grid-template-rows: repeat(3, 10px);
+      gap: 14px 14px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: background-color 0.4s var(--ease), box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+      position: relative;
+    }
+
+    /* Lit state: bright white with subtle atmospheric glow */
+    .dot.lit {
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.65), 0 0 20px rgba(255, 255, 255, 0.25);
+      transform: scale(1.05);
+    }
+
+    /* Ambient pulse on active voting dots */
+    .dot.twinkle {
+      animation: softTwinkle 2.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes softTwinkle {
+      0% {
+        opacity: 0.85;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 16px rgba(255, 255, 255, 0.2);
+      }
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.85), 0 0 24px rgba(255, 255, 255, 0.35);
+      }
+    }
+
+    /* Voting Caption */
+    .loading-caption {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: -0.01em;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    /* Animated 3-dot ellipsis */
+    .ellipsis {
+      display: inline-block;
+      width: 1.5em;
+      text-align: left;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+
+    .ellipsis::after {
+      content: "";
+      animation: dots 1.6s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: ""; }
+      40% { content: "."; }
+      60% { content: ".."; }
+      80%, 100% { content: "..."; }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .bg-video, .header, .loading-panel, .dot, .ellipsis::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .ellipsis::after {
+        content: "...";
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cinematic Background Video -->
+  <div class="bg-container">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <div class="page">
+    <!-- Header with Round Logo and White Nav Pill -->
+    <header class="header">
+      <a href="#home" class="logo-btn" aria-label="Beranda">
+        <svg viewBox="0 0 24 24">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </a>
+
+      <nav class="nav-pill" aria-label="Navigasi Utama">
+        <a href="#home" class="nav-link">Beranda</a>
+        <a href="#predict" class="nav-link active" aria-current="page">Prediksi</a>
+        <div class="nav-dots" aria-hidden="true"></div>
+      </nav>
+    </header>
+
+    <!-- Center Stage: Random Forest Voting State -->
+    <main class="stage">
+      <section class="loading-panel" aria-live="polite" aria-busy="true">
+        <!-- 24 Dots representing 24 Decision Trees in Random Forest (8 cols x 3 rows) -->
+        <!-- Approximately two-thirds (16 of 24) lit bright white with glow, remainder dim gray -->
+        <div class="forest-grid" aria-hidden="true">
+          <!-- Row 1 (8 dots): 6 lit, 2 dim -->
+          <div class="dot lit twinkle" style="animation-delay: 0.1s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.4s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.8s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.2s;"></div>
+          <div class="dot"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.6s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.3s;"></div>
+          <div class="dot"></div>
+
+          <!-- Row 2 (8 dots): 5 lit, 3 dim -->
+          <div class="dot lit twinkle" style="animation-delay: 0.5s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.9s;"></div>
+          <div class="dot"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.15s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.7s;"></div>
+          <div class="dot"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.35s;"></div>
+          <div class="dot"></div>
+
+          <!-- Row 3 (8 dots): 5 lit, 3 dim (Total: 16 lit / 24) -->
+          <div class="dot lit twinkle" style="animation-delay: 0.65s;"></div>
+          <div class="dot"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.25s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.85s;"></div>
+          <div class="dot"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.45s;"></div>
+          <div class="dot lit twinkle" style="animation-delay: 0.75s;"></div>
+          <div class="dot"></div>
+        </div>
+
+        <div class="loading-caption">
+          Pohon keputusan sedang voting<span class="ellipsis" aria-hidden="true"></span>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

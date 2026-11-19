@@ -1,0 +1,24 @@
+{
+  "classes": [
+    "Dropout",
+    "Enrolled",
+    "Graduate"
+  ],
+  "feature_set": "B_full",
+  "n_features": 36,
+  "strategy": "smotenc",
+  "seed": 42,
+  "trained_at": "2026-11-17T02:49:00.259920+00:00",
+  "python": "3.14.2",
+  "scikit_learn": "1.8.0",
+  "test_metrics": {
+    "macro_f1": 0.6993544370757343
+  },
+  "best_params": {
+    "rf__n_estimators": 200,
+    "rf__min_samples_split": 5,
+    "rf__min_samples_leaf": 2,
+    "rf__max_features": "sqrt",
+    "rf__max_depth": 10
+  }
+}

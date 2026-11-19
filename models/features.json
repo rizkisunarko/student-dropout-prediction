@@ -1,0 +1,1417 @@
+[
+  {
+    "id": "marital_status",
+    "csv_name": "Marital status",
+    "label": "Status Pernikahan",
+    "group": "demographic",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Status Pernikahan --",
+    "observed_min": 1.0,
+    "observed_max": 6.0,
+    "options": [
+      {
+        "value": 1,
+        "label": "Lajang (Single)"
+      },
+      {
+        "value": 2,
+        "label": "Menikah (Married)"
+      },
+      {
+        "value": 3,
+        "label": "Duda / Janda (Widower)"
+      },
+      {
+        "value": 4,
+        "label": "Bercerai (Divorced)"
+      },
+      {
+        "value": 5,
+        "label": "Pasangan Sah (Facto Union)"
+      },
+      {
+        "value": 6,
+        "label": "Pisah Ranjang (Separated)"
+      }
+    ]
+  },
+  {
+    "id": "application_mode",
+    "csv_name": "Application mode",
+    "label": "Jalur Pendaftaran",
+    "group": "enrollment",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Jalur Pendaftaran --",
+    "observed_min": 1.0,
+    "observed_max": 57.0,
+    "options": [
+      {
+        "value": 1,
+        "label": "Fase 1 - Jalur Umum (1st Phase General)"
+      },
+      {
+        "value": 2,
+        "label": "Peraturan Pemerintah No. 612/93"
+      },
+      {
+        "value": 5,
+        "label": "Fase 1 - Jalur Khusus Kepulauan Azores"
+      },
+      {
+        "value": 7,
+        "label": "Pemegang Ijazah Pendidikan Tinggi Lain"
+      },
+      {
+        "value": 10,
+        "label": "Peraturan Pemerintah No. 854-B/99"
+      },
+      {
+        "value": 15,
+        "label": "Mahasiswa Internasional (Sarjana)"
+      },
+      {
+        "value": 16,
+        "label": "Fase 1 - Jalur Khusus Kepulauan Madeira"
+      },
+      {
+        "value": 17,
+        "label": "Fase 2 - Jalur Umum (2nd Phase General)"
+      },
+      {
+        "value": 18,
+        "label": "Fase 3 - Jalur Umum (3rd Phase General)"
+      },
+      {
+        "value": 26,
+        "label": "Peraturan No. 533-A/99 - Rencana Berbeda"
+      },
+      {
+        "value": 27,
+        "label": "Peraturan No. 533-A/99 - Institusi Lain"
+      },
+      {
+        "value": 39,
+        "label": "Khusus Usia di Atas 23 Tahun"
+      },
+      {
+        "value": 42,
+        "label": "Pindahan (Transfer)"
+      },
+      {
+        "value": 43,
+        "label": "Pindah Program Studi (Change of Course)"
+      },
+      {
+        "value": 44,
+        "label": "Pemegang Ijazah Spesialisasi Teknologi"
+      },
+      {
+        "value": 51,
+        "label": "Pindah Institusi / Prodi"
+      },
+      {
+        "value": 53,
+        "label": "Pemegang Ijazah Diploma Singkat"
+      },
+      {
+        "value": 57,
+        "label": "Pindah Institusi / Prodi (Internasional)"
+      }
+    ]
+  },
+  {
+    "id": "application_order",
+    "csv_name": "Application order",
+    "label": "Pilihan Prioritas Jurusan",
+    "group": "enrollment",
+    "type": "number",
+    "unit": "pilihan ke- (0 - 9)",
+    "placeholder": "Contoh: 1",
+    "observed_min": 0.0,
+    "observed_max": 9.0,
+    "valid_min": 0,
+    "valid_max": 9
+  },
+  {
+    "id": "course",
+    "csv_name": "Course",
+    "label": "Program Studi / Jurusan",
+    "group": "enrollment",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Program Studi --",
+    "observed_min": 33.0,
+    "observed_max": 9991.0,
+    "options": [
+      {
+        "value": 33,
+        "label": "Teknologi Produksi Biofuel"
+      },
+      {
+        "value": 171,
+        "label": "Desain Animasi & Multimedia"
+      },
+      {
+        "value": 8014,
+        "label": "Pelayanan Sosial (Kelas Malam)"
+      },
+      {
+        "value": 9003,
+        "label": "Agronomi / Pertanian"
+      },
+      {
+        "value": 9070,
+        "label": "Desain Komunikasi"
+      },
+      {
+        "value": 9085,
+        "label": "Keperawatan Hewan (Veterinary)"
+      },
+      {
+        "value": 9119,
+        "label": "Teknik Informatika"
+      },
+      {
+        "value": 9130,
+        "label": "Peternakan Kuda (Equinculture)"
+      },
+      {
+        "value": 9147,
+        "label": "Manajemen Bisnis"
+      },
+      {
+        "value": 9238,
+        "label": "Pelayanan Sosial (Reguler)"
+      },
+      {
+        "value": 9254,
+        "label": "Pariwisata & Perhotelan"
+      },
+      {
+        "value": 9500,
+        "label": "Keperawatan Medis (Nursing)"
+      },
+      {
+        "value": 9556,
+        "label": "Kesehatan Gigi (Oral Hygiene)"
+      },
+      {
+        "value": 9670,
+        "label": "Manajemen Periklanan & Pemasaran"
+      },
+      {
+        "value": 9773,
+        "label": "Jurnalistik & Komunikasi"
+      },
+      {
+        "value": 9853,
+        "label": "Pendidikan Dasar"
+      },
+      {
+        "value": 9991,
+        "label": "Manajemen Bisnis (Kelas Malam)"
+      }
+    ]
+  },
+  {
+    "id": "daytime_evening_attendance",
+    "csv_name": "Daytime/evening attendance",
+    "label": "Waktu Perkuliahan",
+    "group": "enrollment",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Kelas Malam"
+      },
+      {
+        "value": 1,
+        "label": "Reguler (Pagi/Siang)"
+      }
+    ]
+  },
+  {
+    "id": "previous_qualification",
+    "csv_name": "Previous qualification",
+    "label": "Kualifikasi Pendidikan Sebelumnya",
+    "group": "enrollment",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Kualifikasi --",
+    "observed_min": 1.0,
+    "observed_max": 43.0,
+    "options": [
+      {
+        "value": 1,
+        "label": "Pendidikan Menengah Atas (SMA/SMK)"
+      },
+      {
+        "value": 2,
+        "label": "Pendidikan Tinggi - Sarjana (Bachelor)"
+      },
+      {
+        "value": 3,
+        "label": "Pendidikan Tinggi - Diploma/Gelar (Degree)"
+      },
+      {
+        "value": 4,
+        "label": "Pendidikan Tinggi - Magister/S2 (Master)"
+      },
+      {
+        "value": 5,
+        "label": "Pendidikan Tinggi - Doktor/S3 (Doctorate)"
+      },
+      {
+        "value": 6,
+        "label": "Pernah Kuliah (Frequency of Higher Education)"
+      },
+      {
+        "value": 9,
+        "label": "Kelas 12 - Belum Selesai"
+      },
+      {
+        "value": 10,
+        "label": "Kelas 11 - Belum Selesai"
+      },
+      {
+        "value": 12,
+        "label": "Lainnya - Kelas 11"
+      },
+      {
+        "value": 14,
+        "label": "Kelas 10"
+      },
+      {
+        "value": 15,
+        "label": "Kelas 10 - Belum Selesai"
+      },
+      {
+        "value": 19,
+        "label": "Pendidikan Dasar Siklus 3 / SMP (Kelas 9)"
+      },
+      {
+        "value": 38,
+        "label": "Pendidikan Dasar Siklus 2 / SD Lanjutan (Kelas 6)"
+      },
+      {
+        "value": 39,
+        "label": "Kursus Spesialisasi Teknologi"
+      },
+      {
+        "value": 40,
+        "label": "Pendidikan Tinggi - Sarjana Terapan"
+      },
+      {
+        "value": 42,
+        "label": "Pendidikan Tinggi Kejuruan (Vokasi)"
+      },
+      {
+        "value": 43,
+        "label": "Pendidikan Tinggi - Magister (Siklus 2)"
+      }
+    ]
+  },
+  {
+    "id": "previous_qualification_grade",
+    "csv_name": "Previous qualification (grade)",
+    "label": "Nilai Kualifikasi Sebelumnya",
+    "group": "enrollment",
+    "type": "number",
+    "unit": "skala 0 - 200",
+    "placeholder": "Contoh: 130",
+    "observed_min": 95.0,
+    "observed_max": 190.0,
+    "valid_min": 0.0,
+    "valid_max": 200.0
+  },
+  {
+    "id": "nationality",
+    "csv_name": "Nacionality",
+    "label": "Kewarganegaraan",
+    "group": "demographic",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Kewarganegaraan --",
+    "observed_min": 1.0,
+    "observed_max": 109.0,
+    "options": [
+      {
+        "value": 1,
+        "label": "Portugal (Domestik)"
+      },
+      {
+        "value": 2,
+        "label": "Jerman"
+      },
+      {
+        "value": 6,
+        "label": "Spanyol"
+      },
+      {
+        "value": 11,
+        "label": "Italia"
+      },
+      {
+        "value": 13,
+        "label": "Belanda"
+      },
+      {
+        "value": 14,
+        "label": "Inggris Raya"
+      },
+      {
+        "value": 17,
+        "label": "Lithuania"
+      },
+      {
+        "value": 21,
+        "label": "Angola"
+      },
+      {
+        "value": 22,
+        "label": "Tanjung Verde (Cape Verde)"
+      },
+      {
+        "value": 24,
+        "label": "Guinea"
+      },
+      {
+        "value": 25,
+        "label": "Mozambik"
+      },
+      {
+        "value": 26,
+        "label": "Sao Tome dan Principe"
+      },
+      {
+        "value": 32,
+        "label": "Turki"
+      },
+      {
+        "value": 41,
+        "label": "Brasil"
+      },
+      {
+        "value": 62,
+        "label": "Rumania"
+      },
+      {
+        "value": 100,
+        "label": "Moldova"
+      },
+      {
+        "value": 101,
+        "label": "Meksiko"
+      },
+      {
+        "value": 103,
+        "label": "Ukraina"
+      },
+      {
+        "value": 105,
+        "label": "Rusia"
+      },
+      {
+        "value": 108,
+        "label": "Kuba"
+      },
+      {
+        "value": 109,
+        "label": "Kolombia"
+      }
+    ]
+  },
+  {
+    "id": "mothers_qualification",
+    "csv_name": "Mother's qualification",
+    "label": "Pendidikan Ibu",
+    "group": "socioeconomic",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Pendidikan Ibu --",
+    "observed_min": 1.0,
+    "observed_max": 44.0,
+    "options": [
+      {
+        "value": 1,
+        "label": "Pendidikan Menengah (SMA/SMK)"
+      },
+      {
+        "value": 2,
+        "label": "Pendidikan Tinggi - Sarjana (Bachelor)"
+      },
+      {
+        "value": 3,
+        "label": "Pendidikan Tinggi - Sarjana/Diploma (Degree)"
+      },
+      {
+        "value": 4,
+        "label": "Pendidikan Tinggi - Magister (Master)"
+      },
+      {
+        "value": 5,
+        "label": "Pendidikan Tinggi - Doktor (Doctorate)"
+      },
+      {
+        "value": 6,
+        "label": "Pernah Kuliah"
+      },
+      {
+        "value": 9,
+        "label": "Kelas 12 - Tidak Tamat"
+      },
+      {
+        "value": 10,
+        "label": "Kelas 11 - Tidak Tamat"
+      },
+      {
+        "value": 11,
+        "label": "Kelas 7 Sistem Lama"
+      },
+      {
+        "value": 12,
+        "label": "Lainnya - Kelas 11"
+      },
+      {
+        "value": 14,
+        "label": "Kelas 10"
+      },
+      {
+        "value": 18,
+        "label": "Kursus Perdagangan Umum"
+      },
+      {
+        "value": 19,
+        "label": "Pendidikan Dasar Siklus 3 (SMP / Kelas 9)"
+      },
+      {
+        "value": 22,
+        "label": "Kursus Teknis-Profesional"
+      },
+      {
+        "value": 26,
+        "label": "Pendidikan Dasar Kelas 7"
+      },
+      {
+        "value": 27,
+        "label": "Siklus ke-2 Sekolah Menengah Umum"
+      },
+      {
+        "value": 29,
+        "label": "Kelas 9 - Tidak Tamat"
+      },
+      {
+        "value": 30,
+        "label": "Pendidikan Dasar Kelas 8"
+      },
+      {
+        "value": 34,
+        "label": "Tidak Diketahui"
+      },
+      {
+        "value": 35,
+        "label": "Tidak Bisa Membaca / Menulis"
+      },
+      {
+        "value": 36,
+        "label": "Bisa Membaca tanpa Lulus SD"
+      },
+      {
+        "value": 37,
+        "label": "Pendidikan Dasar Siklus 1 (SD / Kelas 4)"
+      },
+      {
+        "value": 38,
+        "label": "Pendidikan Dasar Siklus 2 (SD Lanjutan / Kelas 6)"
+      },
+      {
+        "value": 39,
+        "label": "Kursus Spesialisasi Teknologi"
+      },
+      {
+        "value": 40,
+        "label": "Pendidikan Tinggi - Sarjana Terapan"
+      },
+      {
+        "value": 41,
+        "label": "Kursus Studi Tinggi Khusus"
+      },
+      {
+        "value": 42,
+        "label": "Kursus Vokasi Kejuruan"
+      },
+      {
+        "value": 43,
+        "label": "Pendidikan Tinggi - Magister"
+      },
+      {
+        "value": 44,
+        "label": "Pendidikan Tinggi - Doktor"
+      }
+    ]
+  },
+  {
+    "id": "fathers_qualification",
+    "csv_name": "Father's qualification",
+    "label": "Pendidikan Ayah",
+    "group": "socioeconomic",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Pendidikan Ayah --",
+    "observed_min": 1.0,
+    "observed_max": 44.0,
+    "options": [
+      {
+        "value": 1,
+        "label": "Pendidikan Menengah (SMA/SMK)"
+      },
+      {
+        "value": 2,
+        "label": "Pendidikan Tinggi - Sarjana (Bachelor)"
+      },
+      {
+        "value": 3,
+        "label": "Pendidikan Tinggi - Sarjana/Diploma (Degree)"
+      },
+      {
+        "value": 4,
+        "label": "Pendidikan Tinggi - Magister (Master)"
+      },
+      {
+        "value": 5,
+        "label": "Pendidikan Tinggi - Doktor (Doctorate)"
+      },
+      {
+        "value": 6,
+        "label": "Pernah Kuliah"
+      },
+      {
+        "value": 9,
+        "label": "Kelas 12 - Tidak Tamat"
+      },
+      {
+        "value": 10,
+        "label": "Kelas 11 - Tidak Tamat"
+      },
+      {
+        "value": 11,
+        "label": "Kelas 7 Sistem Lama"
+      },
+      {
+        "value": 12,
+        "label": "Lainnya - Kelas 11"
+      },
+      {
+        "value": 13,
+        "label": "Kursus Menengah Pelengkap Tahun ke-2"
+      },
+      {
+        "value": 14,
+        "label": "Kelas 10"
+      },
+      {
+        "value": 18,
+        "label": "Kursus Perdagangan Umum"
+      },
+      {
+        "value": 19,
+        "label": "Pendidikan Dasar Siklus 3 (SMP / Kelas 9)"
+      },
+      {
+        "value": 20,
+        "label": "Kursus Menengah Pelengkap"
+      },
+      {
+        "value": 22,
+        "label": "Kursus Teknis-Profesional"
+      },
+      {
+        "value": 25,
+        "label": "Kursus Menengah Pelengkap - Belum Selesai"
+      },
+      {
+        "value": 26,
+        "label": "Pendidikan Dasar Kelas 7"
+      },
+      {
+        "value": 27,
+        "label": "Siklus ke-2 Sekolah Menengah Umum"
+      },
+      {
+        "value": 29,
+        "label": "Kelas 9 - Tidak Tamat"
+      },
+      {
+        "value": 30,
+        "label": "Pendidikan Dasar Kelas 8"
+      },
+      {
+        "value": 31,
+        "label": "Kursus Umum Administrasi & Perdagangan"
+      },
+      {
+        "value": 33,
+        "label": "Kursus Tambahan Akuntansi & Administrasi"
+      },
+      {
+        "value": 34,
+        "label": "Tidak Diketahui"
+      },
+      {
+        "value": 35,
+        "label": "Tidak Bisa Membaca / Menulis"
+      },
+      {
+        "value": 36,
+        "label": "Bisa Membaca tanpa Lulus SD"
+      },
+      {
+        "value": 37,
+        "label": "Pendidikan Dasar Siklus 1 (SD / Kelas 4)"
+      },
+      {
+        "value": 38,
+        "label": "Pendidikan Dasar Siklus 2 (SD Lanjutan / Kelas 6)"
+      },
+      {
+        "value": 39,
+        "label": "Kursus Spesialisasi Teknologi"
+      },
+      {
+        "value": 40,
+        "label": "Pendidikan Tinggi - Sarjana Terapan"
+      },
+      {
+        "value": 41,
+        "label": "Kursus Studi Tinggi Khusus"
+      },
+      {
+        "value": 42,
+        "label": "Kursus Vokasi Kejuruan"
+      },
+      {
+        "value": 43,
+        "label": "Pendidikan Tinggi - Magister"
+      },
+      {
+        "value": 44,
+        "label": "Pendidikan Tinggi - Doktor"
+      }
+    ]
+  },
+  {
+    "id": "mothers_occupation",
+    "csv_name": "Mother's occupation",
+    "label": "Pekerjaan Ibu",
+    "group": "socioeconomic",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Pekerjaan Ibu --",
+    "observed_min": 0.0,
+    "observed_max": 194.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Pelajar / Mahasiswa"
+      },
+      {
+        "value": 1,
+        "label": "Pimpinan Legislatif, Eksekutif, Direktur & Manajer"
+      },
+      {
+        "value": 2,
+        "label": "Spesialis Intelektual, Ilmiah & Profesional"
+      },
+      {
+        "value": 3,
+        "label": "Teknisi & Profesi Tingkat Menengah"
+      },
+      {
+        "value": 4,
+        "label": "Staf Administrasi & Tata Usaha"
+      },
+      {
+        "value": 5,
+        "label": "Pekerja Layanan Jasa, Keamanan & Pramuniaga"
+      },
+      {
+        "value": 6,
+        "label": "Petani & Pekerja Terampil Pertanian, Perikanan"
+      },
+      {
+        "value": 7,
+        "label": "Pekerja Terampil Industri, Konstruksi & Pengrajin"
+      },
+      {
+        "value": 8,
+        "label": "Operator Mesin, Instalasi & Pekerja Perakitan"
+      },
+      {
+        "value": 9,
+        "label": "Pekerja Kasar / Tenaga Tidak Terampil"
+      },
+      {
+        "value": 10,
+        "label": "Profesi Angkatan Bersenjata / Militer"
+      },
+      {
+        "value": 90,
+        "label": "Pensiunan / Rumah Tangga / Lainnya"
+      },
+      {
+        "value": 99,
+        "label": "Tidak Diketahui / Kosong"
+      },
+      {
+        "value": 122,
+        "label": "Tenaga Medis / Profesional Kesehatan"
+      },
+      {
+        "value": 123,
+        "label": "Pendidik / Dosen / Guru"
+      },
+      {
+        "value": 125,
+        "label": "Spesialis Teknologi Informasi & Komunikasi (TIK)"
+      },
+      {
+        "value": 131,
+        "label": "Teknisi Tingkat Menengah Sains & Teknik"
+      },
+      {
+        "value": 132,
+        "label": "Teknisi Kesehatan Tingkat Menengah"
+      },
+      {
+        "value": 134,
+        "label": "Teknisi Layanan Hukum, Sosial & Budaya"
+      },
+      {
+        "value": 141,
+        "label": "Pegawai Kantor, Sekretaris & Operator Data"
+      },
+      {
+        "value": 143,
+        "label": "Operator Layanan Keuangan, Akuntansi & Statistik"
+      },
+      {
+        "value": 144,
+        "label": "Staf Pendukung Administrasi Lainnya"
+      },
+      {
+        "value": 151,
+        "label": "Pekerja Layanan Pribadi"
+      },
+      {
+        "value": 152,
+        "label": "Pedagang / Pramuniaga Toko"
+      },
+      {
+        "value": 153,
+        "label": "Pekerja Perawatan Pribadi"
+      },
+      {
+        "value": 171,
+        "label": "Pekerja Konstruksi & Bangunan Terampil"
+      },
+      {
+        "value": 173,
+        "label": "Pekerja Terampil Listrik & Elektronika"
+      },
+      {
+        "value": 175,
+        "label": "Pekerja Pengolahan Pangan, Kayu & Pakaian"
+      },
+      {
+        "value": 191,
+        "label": "Pekerja Kasar Pertanian & Perikanan"
+      },
+      {
+        "value": 192,
+        "label": "Pekerja Kasar Pertanian & Peternakan"
+      },
+      {
+        "value": 193,
+        "label": "Pekerja Kasar Tambang, Konstruksi & Pabrik"
+      },
+      {
+        "value": 194,
+        "label": "Asisten Penyiapan Makanan"
+      }
+    ]
+  },
+  {
+    "id": "fathers_occupation",
+    "csv_name": "Father's occupation",
+    "label": "Pekerjaan Ayah",
+    "group": "socioeconomic",
+    "type": "select",
+    "unit": "",
+    "placeholder": "-- Pilih Pekerjaan Ayah --",
+    "observed_min": 0.0,
+    "observed_max": 195.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Pelajar / Mahasiswa"
+      },
+      {
+        "value": 1,
+        "label": "Pimpinan Legislatif, Eksekutif, Direktur & Manajer"
+      },
+      {
+        "value": 2,
+        "label": "Spesialis Intelektual, Ilmiah & Profesional"
+      },
+      {
+        "value": 3,
+        "label": "Teknisi & Profesi Tingkat Menengah"
+      },
+      {
+        "value": 4,
+        "label": "Staf Administrasi & Tata Usaha"
+      },
+      {
+        "value": 5,
+        "label": "Pekerja Layanan Jasa, Keamanan & Pramuniaga"
+      },
+      {
+        "value": 6,
+        "label": "Petani & Pekerja Terampil Pertanian, Perikanan"
+      },
+      {
+        "value": 7,
+        "label": "Pekerja Terampil Industri, Konstruksi & Pengrajin"
+      },
+      {
+        "value": 8,
+        "label": "Operator Mesin, Instalasi & Pekerja Perakitan"
+      },
+      {
+        "value": 9,
+        "label": "Pekerja Kasar / Tenaga Tidak Terampil"
+      },
+      {
+        "value": 10,
+        "label": "Profesi Angkatan Bersenjata / Militer"
+      },
+      {
+        "value": 90,
+        "label": "Pensiunan / Rumah Tangga / Lainnya"
+      },
+      {
+        "value": 99,
+        "label": "Tidak Diketahui / Kosong"
+      },
+      {
+        "value": 101,
+        "label": "Perwira Angkatan Bersenjata"
+      },
+      {
+        "value": 102,
+        "label": "Bintara Angkatan Bersenjata"
+      },
+      {
+        "value": 103,
+        "label": "Personel Militer Lainnya"
+      },
+      {
+        "value": 112,
+        "label": "Direktur Layanan Administratif & Komersial"
+      },
+      {
+        "value": 114,
+        "label": "Direktur Perhotelan, Katering, Perdagangan & Jasa"
+      },
+      {
+        "value": 121,
+        "label": "Spesialis Sains Fisika, Matematika & Teknik"
+      },
+      {
+        "value": 122,
+        "label": "Tenaga Medis / Profesional Kesehatan"
+      },
+      {
+        "value": 123,
+        "label": "Pendidik / Dosen / Guru"
+      },
+      {
+        "value": 124,
+        "label": "Spesialis Keuangan, Akuntansi & Hubungan Publik"
+      },
+      {
+        "value": 131,
+        "label": "Teknisi Tingkat Menengah Sains & Teknik"
+      },
+      {
+        "value": 132,
+        "label": "Teknisi Kesehatan Tingkat Menengah"
+      },
+      {
+        "value": 134,
+        "label": "Teknisi Layanan Hukum, Sosial & Budaya"
+      },
+      {
+        "value": 135,
+        "label": "Teknisi Teknologi Informasi & Komunikasi"
+      },
+      {
+        "value": 141,
+        "label": "Pegawai Kantor, Sekretaris & Operator Data"
+      },
+      {
+        "value": 143,
+        "label": "Operator Layanan Keuangan, Akuntansi & Statistik"
+      },
+      {
+        "value": 144,
+        "label": "Staf Pendukung Administrasi Lainnya"
+      },
+      {
+        "value": 151,
+        "label": "Pekerja Layanan Pribadi"
+      },
+      {
+        "value": 152,
+        "label": "Pedagang / Pramuniaga Toko"
+      },
+      {
+        "value": 153,
+        "label": "Pekerja Perawatan Pribadi"
+      },
+      {
+        "value": 154,
+        "label": "Personel Layanan Keamanan & Perlindungan"
+      },
+      {
+        "value": 161,
+        "label": "Petani & Peternak Komersial Pasar"
+      },
+      {
+        "value": 163,
+        "label": "Petani, Peternak & Nelayan Subsisten"
+      },
+      {
+        "value": 171,
+        "label": "Pekerja Konstruksi & Bangunan Terampil"
+      },
+      {
+        "value": 172,
+        "label": "Pekerja Logam, Metalurgi & Sejenisnya"
+      },
+      {
+        "value": 174,
+        "label": "Teknisi Listrik & Elektronika"
+      },
+      {
+        "value": 175,
+        "label": "Pekerja Pengolahan Pangan, Kayu & Pakaian"
+      },
+      {
+        "value": 181,
+        "label": "Operator Mesin & Pabrik Tetap"
+      },
+      {
+        "value": 182,
+        "label": "Pekerja Perakitan / Assembling"
+      },
+      {
+        "value": 183,
+        "label": "Pengemudi Kendaraan & Operator Alat Berat"
+      },
+      {
+        "value": 192,
+        "label": "Pekerja Kasar Pertanian & Peternakan"
+      },
+      {
+        "value": 193,
+        "label": "Pekerja Kasar Tambang, Konstruksi & Pabrik"
+      },
+      {
+        "value": 194,
+        "label": "Asisten Penyiapan Makanan"
+      },
+      {
+        "value": 195,
+        "label": "Pedagang Kaki Lima & Jasa Jalanan"
+      }
+    ]
+  },
+  {
+    "id": "admission_grade",
+    "csv_name": "Admission grade",
+    "label": "Nilai Seleksi Masuk (Admission)",
+    "group": "enrollment",
+    "type": "number",
+    "unit": "skala 0 - 200",
+    "placeholder": "Contoh: 135",
+    "observed_min": 95.0,
+    "observed_max": 190.0,
+    "valid_min": 0.0,
+    "valid_max": 200.0
+  },
+  {
+    "id": "displaced",
+    "csv_name": "Displaced",
+    "label": "Status Pindahan / Rantau (Displaced)",
+    "group": "demographic",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Tidak"
+      },
+      {
+        "value": 1,
+        "label": "Ya (Pindahan/Displaced)"
+      }
+    ]
+  },
+  {
+    "id": "educational_special_needs",
+    "csv_name": "Educational special needs",
+    "label": "Kebutuhan Khusus Edukasi",
+    "group": "demographic",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Tidak"
+      },
+      {
+        "value": 1,
+        "label": "Ya"
+      }
+    ]
+  },
+  {
+    "id": "debtor",
+    "csv_name": "Debtor",
+    "label": "Status Hutang / Tunggakan Pinjaman",
+    "group": "socioeconomic",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Tidak"
+      },
+      {
+        "value": 1,
+        "label": "Ya (Ada Hutang)"
+      }
+    ]
+  },
+  {
+    "id": "tuition_fees_up_to_date",
+    "csv_name": "Tuition fees up to date",
+    "label": "Pembayaran Uang Kuliah (UKT / SPP)",
+    "group": "socioeconomic",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Tidak (Menunggak)"
+      },
+      {
+        "value": 1,
+        "label": "Ya (Lancar)"
+      }
+    ]
+  },
+  {
+    "id": "gender",
+    "csv_name": "Gender",
+    "label": "Jenis Kelamin",
+    "group": "demographic",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Perempuan"
+      },
+      {
+        "value": 1,
+        "label": "Laki-laki"
+      }
+    ]
+  },
+  {
+    "id": "scholarship_holder",
+    "csv_name": "Scholarship holder",
+    "label": "Penerima Beasiswa",
+    "group": "socioeconomic",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Bukan Penerima"
+      },
+      {
+        "value": 1,
+        "label": "Penerima Beasiswa"
+      }
+    ]
+  },
+  {
+    "id": "age_at_enrollment",
+    "csv_name": "Age at enrollment",
+    "label": "Usia saat Masuk",
+    "group": "demographic",
+    "type": "number",
+    "unit": "tahun",
+    "placeholder": "Contoh: 19",
+    "observed_min": 17.0,
+    "observed_max": 70.0,
+    "valid_min": 16,
+    "valid_max": 75
+  },
+  {
+    "id": "international",
+    "csv_name": "International",
+    "label": "Status Mahasiswa Internasional",
+    "group": "demographic",
+    "type": "binary",
+    "unit": "",
+    "placeholder": "",
+    "observed_min": 0.0,
+    "observed_max": 1.0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Tidak (Domestik)"
+      },
+      {
+        "value": 1,
+        "label": "Ya (Internasional)"
+      }
+    ]
+  },
+  {
+    "id": "cu_1st_credited",
+    "csv_name": "Curricular units 1st sem (credited)",
+    "label": "SKS Diakui Semester 1 (Credited)",
+    "group": "sem1",
+    "type": "number",
+    "unit": "SKS",
+    "placeholder": "0",
+    "observed_min": 0.0,
+    "observed_max": 20.0,
+    "valid_min": 0,
+    "valid_max": 30
+  },
+  {
+    "id": "cu_1st_enrolled",
+    "csv_name": "Curricular units 1st sem (enrolled)",
+    "label": "SKS Diambil Semester 1 (Enrolled)",
+    "group": "sem1",
+    "type": "number",
+    "unit": "SKS",
+    "placeholder": "Contoh: 6",
+    "observed_min": 0.0,
+    "observed_max": 26.0,
+    "valid_min": 0,
+    "valid_max": 30
+  },
+  {
+    "id": "cu_1st_evaluations",
+    "csv_name": "Curricular units 1st sem (evaluations)",
+    "label": "Jumlah Ujian Diikuti Semester 1",
+    "group": "sem1",
+    "type": "number",
+    "unit": "kali",
+    "placeholder": "Contoh: 7",
+    "observed_min": 0.0,
+    "observed_max": 45.0,
+    "valid_min": 0,
+    "valid_max": 40
+  },
+  {
+    "id": "cu_1st_approved",
+    "csv_name": "Curricular units 1st sem (approved)",
+    "label": "SKS Lulus Semester 1 (Approved)",
+    "group": "sem1",
+    "type": "number",
+    "unit": "SKS",
+    "placeholder": "Contoh: 5",
+    "observed_min": 0.0,
+    "observed_max": 26.0,
+    "valid_min": 0,
+    "valid_max": 30
+  },
+  {
+    "id": "cu_1st_grade",
+    "csv_name": "Curricular units 1st sem (grade)",
+    "label": "Rata-rata Nilai Semester 1",
+    "group": "sem1",
+    "type": "number",
+    "unit": "skala 0 - 20",
+    "placeholder": "Contoh: 13.5",
+    "observed_min": 0.0,
+    "observed_max": 18.875,
+    "valid_min": 0.0,
+    "valid_max": 20.0
+  },
+  {
+    "id": "cu_1st_without_evaluations",
+    "csv_name": "Curricular units 1st sem (without evaluations)",
+    "label": "Mata Kuliah Tanpa Evaluasi Sem 1",
+    "group": "sem1",
+    "type": "number",
+    "unit": "mata kuliah",
+    "placeholder": "0",
+    "observed_min": 0.0,
+    "observed_max": 12.0,
+    "valid_min": 0,
+    "valid_max": 10
+  },
+  {
+    "id": "cu_2nd_credited",
+    "csv_name": "Curricular units 2nd sem (credited)",
+    "label": "SKS Diakui Semester 2 (Credited)",
+    "group": "sem2",
+    "type": "number",
+    "unit": "SKS",
+    "placeholder": "0",
+    "observed_min": 0.0,
+    "observed_max": 19.0,
+    "valid_min": 0,
+    "valid_max": 30
+  },
+  {
+    "id": "cu_2nd_enrolled",
+    "csv_name": "Curricular units 2nd sem (enrolled)",
+    "label": "SKS Diambil Semester 2 (Enrolled)",
+    "group": "sem2",
+    "type": "number",
+    "unit": "SKS",
+    "placeholder": "Contoh: 6",
+    "observed_min": 0.0,
+    "observed_max": 23.0,
+    "valid_min": 0,
+    "valid_max": 30
+  },
+  {
+    "id": "cu_2nd_evaluations",
+    "csv_name": "Curricular units 2nd sem (evaluations)",
+    "label": "Jumlah Ujian Diikuti Semester 2",
+    "group": "sem2",
+    "type": "number",
+    "unit": "kali",
+    "placeholder": "Contoh: 8",
+    "observed_min": 0.0,
+    "observed_max": 33.0,
+    "valid_min": 0,
+    "valid_max": 40
+  },
+  {
+    "id": "cu_2nd_approved",
+    "csv_name": "Curricular units 2nd sem (approved)",
+    "label": "SKS Lulus Semester 2 (Approved)",
+    "group": "sem2",
+    "type": "number",
+    "unit": "SKS",
+    "placeholder": "Contoh: 5",
+    "observed_min": 0.0,
+    "observed_max": 20.0,
+    "valid_min": 0,
+    "valid_max": 30
+  },
+  {
+    "id": "cu_2nd_grade",
+    "csv_name": "Curricular units 2nd sem (grade)",
+    "label": "Rata-rata Nilai Semester 2",
+    "group": "sem2",
+    "type": "number",
+    "unit": "skala 0 - 20",
+    "placeholder": "Contoh: 13.8",
+    "observed_min": 0.0,
+    "observed_max": 18.571428571428573,
+    "valid_min": 0.0,
+    "valid_max": 20.0
+  },
+  {
+    "id": "cu_2nd_without_evaluations",
+    "csv_name": "Curricular units 2nd sem (without evaluations)",
+    "label": "Mata Kuliah Tanpa Evaluasi Sem 2",
+    "group": "sem2",
+    "type": "number",
+    "unit": "mata kuliah",
+    "placeholder": "0",
+    "observed_min": 0.0,
+    "observed_max": 12.0,
+    "valid_min": 0,
+    "valid_max": 10
+  },
+  {
+    "id": "unemployment_rate",
+    "csv_name": "Unemployment rate",
+    "label": "Tingkat Pengangguran Wilayah",
+    "group": "macro",
+    "type": "number",
+    "unit": "%",
+    "placeholder": "11.1",
+    "observed_min": 7.6,
+    "observed_max": 16.2,
+    "median": 11.1,
+    "valid_min": 0.0,
+    "valid_max": 100.0
+  },
+  {
+    "id": "inflation_rate",
+    "csv_name": "Inflation rate",
+    "label": "Tingkat Inflasi",
+    "group": "macro",
+    "type": "number",
+    "unit": "%",
+    "placeholder": "1.4",
+    "observed_min": -0.8,
+    "observed_max": 3.7,
+    "median": 1.4,
+    "valid_min": -10.0,
+    "valid_max": 50.0
+  },
+  {
+    "id": "gdp",
+    "csv_name": "GDP",
+    "label": "Pertumbuhan GDP",
+    "group": "macro",
+    "type": "number",
+    "unit": "%",
+    "placeholder": "0.32",
+    "observed_min": -4.06,
+    "observed_max": 3.51,
+    "median": 0.32,
+    "valid_min": -20.0,
+    "valid_max": 20.0
+  }
+]

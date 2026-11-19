@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prediksi Status Akademik Mahasiswa — Akademik Semester 1 (Langkah 4 / 5)</title>
+<!-- Google Fonts: Inter and DotGothic16 (for authentic retro dot-matrix pixel font) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&amp;family=Inter:wght@400;500;600;700&amp;family=Silkscreen&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            pixel: ['"DotGothic16"', '"Silkscreen"', 'monospace'],
+          },
+          colors: {
+            panelBg: 'rgba(40, 40, 42, 0.55)',
+            panelBorder: 'rgba(255, 255, 255, 0.16)',
+            secondaryText: '#8E8E8E',
+            inputBg: 'rgba(255, 255, 255, 0.06)',
+            inputBorder: 'rgba(255, 255, 255, 0.14)',
+          }
+        }
+      }
+    };
+  </script>
+<style data-purpose="custom-scrollbars">
+    /* Subtle custom scrollbar to match sleek cinematic glass aesthetic */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+<style data-purpose="lighting-effects">
+    /* Subtle radial background vignette */
+    .bg-radial-vignette {
+      background: radial-gradient(circle at 50% 25%, #141416 0%, #000000 80%);
+    }
+    /* Soft button glow */
+    .btn-glow {
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.28);
+    }
+  </style>
+</head>
+<body class="bg-black bg-radial-vignette text-white font-sans min-h-screen flex flex-col items-center justify-center p-4 antialiased selection:bg-white selection:text-black">
+<!-- BEGIN: TopNavigation -->
+<header class="w-full flex items-center justify-center gap-3.5 mb-7" data-purpose="page-header">
+<!-- Academic Cap Logo Button -->
+<div class="w-[46px] h-[46px] rounded-full bg-white flex items-center justify-center text-black shadow-lg" data-purpose="brand-icon">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.5l-7-3.82V17c0 2.76 3.13 5 7 5s7-2.24 7-5v-4.32l-7 3.82z"></path>
+</svg>
+</div>
+<!-- Navigation Capsule -->
+<nav class="h-[48px] px-7 bg-white rounded-full flex items-center justify-center gap-6 shadow-md" data-purpose="pill-navigation">
+<a class="text-[14px] font-medium text-[#2E2E2E] opacity-50 hover:opacity-80 transition-opacity" href="#">
+        Beranda
+      </a>
+<div class="flex flex-col items-center justify-center">
+<a class="text-[14px] font-semibold text-[#2E2E2E] leading-tight" href="#">
+          Prediksi
+        </a>
+<!-- Three centered sub-dots for active state -->
+<span aria-hidden="true" class="flex items-center gap-[2.5px] mt-0.5">
+<span class="w-1 h-1 rounded-full bg-[#2E2E2E]"></span>
+<span class="w-1 h-1 rounded-full bg-[#2E2E2E]"></span>
+<span class="w-1 h-1 rounded-full bg-[#2E2E2E]"></span>
+</span>
+</div>
+</nav>
+</header>
+<!-- END: TopNavigation -->
+<!-- BEGIN: MainGlassPanel -->
+<main class="w-[760px] h-[600px] rounded-[28px] bg-panelBg border border-panelBorder backdrop-blur-[18px] shadow-[0_20px_60px_rgba(0,0,0,0.45)] flex flex-col p-8 overflow-hidden relative" data-purpose="form-container">
+<!-- BEGIN: PanelHeader -->
+<section class="flex items-start justify-between mb-4 flex-shrink-0" data-purpose="panel-header">
+<div><h1 class="font-pixel text-[26px] tracking-wide text-white uppercase leading-tight select-none">Makroekonomi</h1><p class="text-[12.5px] text-secondaryText mt-1 font-medium">Kondisi ekonomi saat mahasiswa mendaftar.</p></div>
+<div class="text-[12.5px] font-medium text-secondaryText tracking-wide" data-purpose="step-counter">Langkah 5 / 5</div>
+</section>
+<!-- END: PanelHeader -->
+<!-- BEGIN: ProgressIndicator -->
+<section class="mb-5 flex-shrink-0" data-purpose="stepper-progress">
+<!-- Continuous Progress Bar Track (60% fill for Step 3) -->
+<div class="w-full h-[2px] bg-white/10 rounded-full mb-3 overflow-hidden">
+<div class="h-full bg-white rounded-full transition-all duration-300" style="width: 100%;"></div>
+</div>
+<!-- Stepper Item Dots & Text -->
+<div class="flex items-center justify-between text-[11px] text-secondaryText select-none"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-white/60"></span><span>Demografi</span></div><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-white/60"></span><span>Pendaftaran</span></div><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-white/60"></span><span>Sosial-Ekonomi</span></div><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-white/60"></span><span>Semester 1</span></div><div class="flex items-center gap-2 text-white font-medium"><span class="w-[22px] h-[6px] rounded-full bg-white"></span><span>Makroekonomi</span></div></div>
+</section>
+<!-- END: ProgressIndicator -->
+<!-- BEGIN: FormFieldsGrid -->
+<div class="flex-1 overflow-y-auto custom-scroll pr-1.5 space-y-4" data-purpose="form-fields-scroll-area"><div class="flex items-center justify-between p-4 rounded-[14px] border border-white/[0.08]" style="background: rgba(255, 255, 255, 0.03);"><div class="flex flex-col gap-0.5"><div class="flex items-center gap-2"><span class="text-[13.5px] font-medium text-white">Gunakan nilai median dataset</span><span class="text-[11px] px-2 py-0.5 rounded-full border border-white/15 text-white/60 bg-white/[0.06]">Rekomendasi</span></div><p class="text-[12px] text-secondaryText font-normal">Mengisi otomatis indikator makroekonomi berdasarkan rata-rata historis.</p></div><div class="relative flex items-center cursor-pointer select-none"><div class="w-11 h-6 bg-white rounded-full transition-colors relative flex items-center px-0.5 justify-end"><span class="w-5 h-5 rounded-full bg-black shadow-md"></span></div></div></div><div class="space-y-4 pt-1"><div class="flex flex-col gap-1.5" data-purpose="input-group"><div class="flex items-center justify-between"><label class="text-[12.5px] font-medium text-secondaryText flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-white/40 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path></svg><span>Unemployment rate (%)</span></label><span class="text-[11px] text-white/30 font-normal">7.6–16.2</span></div><div class="relative"><input class="w-full h-[46px] rounded-[14px] text-[13.5px] px-3.5 focus:outline-none transition-colors select-none" readonly="" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #d0d0d0; cursor: not-allowed;" type="text" value="11.1"/><div class="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none"><svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path></svg></div></div></div><div class="flex flex-col gap-1.5" data-purpose="input-group"><div class="flex items-center justify-between"><label class="text-[12.5px] font-medium text-secondaryText flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-white/40 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path></svg><span>Inflation rate (%)</span></label><span class="text-[11px] text-white/30 font-normal">−0.8–3.7</span></div><div class="relative"><input class="w-full h-[46px] rounded-[14px] text-[13.5px] px-3.5 focus:outline-none transition-colors select-none" readonly="" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #d0d0d0; cursor: not-allowed;" type="text" value="1.4"/><div class="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none"><svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path></svg></div></div></div><div class="flex flex-col gap-1.5" data-purpose="input-group"><div class="flex items-center justify-between"><label class="text-[12.5px] font-medium text-secondaryText flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-white/40 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path></svg><span>GDP</span></label><span class="text-[11px] text-white/30 font-normal">−4.1–3.5</span></div><div class="relative"><input class="w-full h-[46px] rounded-[14px] text-[13.5px] px-3.5 focus:outline-none transition-colors select-none" readonly="" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #d0d0d0; cursor: not-allowed;" type="text" value="0.32"/><div class="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none"><svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path></svg></div></div></div></div></div>
+<!-- END: FormFieldsGrid -->
+<!-- BEGIN: PanelBottomActions -->
+<footer class="pt-4 border-t border-white/[0.08] flex items-center justify-between flex-shrink-0" data-purpose="action-buttons">
+<!-- Kembali Ghost Pill Button -->
+<button class="px-[22px] py-[10px] rounded-full border border-white/15 text-[#C8C8C8] text-[13px] font-medium hover:bg-white/[0.06] hover:text-white transition-all flex items-center gap-2 group" type="button">
+<svg class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Kembali</span>
+</button>
+<!-- Lanjut Solid White Pill Button -->
+<button class="px-7 py-[10px] rounded-full bg-white text-black font-semibold text-[13.5px] flex items-center gap-2 hover:bg-gray-100 transition-all btn-glow group" type="button"><span>Prediksi Status</span><svg class="w-4 h-4 fill-current" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" fill-rule="evenodd"></path></svg></button>
+</footer>
+<!-- END: PanelBottomActions -->
+</main>
+<!-- END: MainGlassPanel -->
+</body></html>

@@ -1,0 +1,21 @@
+ID_Mahasiswa,Target_Asli,Prediksi_Pohon_1,Prediksi_Pohon_2,Prediksi_Pohon_3,Majority_Vote,P_Graduate,P_Dropout,P_Enrolled,Hasil_Evaluasi
+Mhs_01,Graduate,Graduate,Graduate,Graduate,Graduate,1.0,0.0,0.0,Benar (Match)
+Mhs_02,Graduate,Dropout,Dropout,Dropout,Dropout,0.0,1.0,0.0,Meleset
+Mhs_03,Graduate,Graduate,Graduate,Graduate,Graduate,1.0,0.0,0.0,Benar (Match)
+Mhs_04,Graduate,Graduate,Graduate,Graduate,Graduate,1.0,0.0,0.0,Benar (Match)
+Mhs_05,Graduate,Graduate,Dropout,Graduate,Graduate,0.67,0.33,0.0,Benar (Match)
+Mhs_06,Graduate,Graduate,Graduate,Graduate,Graduate,1.0,0.0,0.0,Benar (Match)
+Mhs_07,Graduate,Graduate,Graduate,Graduate,Graduate,1.0,0.0,0.0,Benar (Match)
+Mhs_08,Graduate,Graduate,Graduate,Dropout,Graduate,0.67,0.33,0.0,Benar (Match)
+Mhs_09,Dropout,Graduate,Graduate,Enrolled,Graduate,0.67,0.0,0.33,Meleset
+Mhs_10,Dropout,Enrolled,Dropout,Dropout,Dropout,0.0,0.67,0.33,Benar (Match)
+Mhs_11,Dropout,Dropout,Dropout,Dropout,Dropout,0.0,1.0,0.0,Benar (Match)
+Mhs_12,Dropout,Dropout,Enrolled,Dropout,Dropout,0.0,0.67,0.33,Benar (Match)
+Mhs_13,Dropout,Dropout,Dropout,Dropout,Dropout,0.0,1.0,0.0,Benar (Match)
+Mhs_14,Dropout,Graduate,Graduate,Graduate,Graduate,1.0,0.0,0.0,Meleset
+Mhs_15,Dropout,Dropout,Dropout,Dropout,Dropout,0.0,1.0,0.0,Benar (Match)
+Mhs_16,Enrolled,Graduate,Graduate,Enrolled,Graduate,0.67,0.0,0.33,Meleset
+Mhs_17,Enrolled,Dropout,Dropout,Enrolled,Dropout,0.0,0.67,0.33,Meleset
+Mhs_18,Enrolled,Graduate,Graduate,Dropout,Graduate,0.67,0.33,0.0,Meleset
+Mhs_19,Enrolled,Graduate,Graduate,Enrolled,Graduate,0.67,0.0,0.33,Meleset
+Mhs_20,Enrolled,Graduate,Graduate,Graduate,Graduate,1.0,0.0,0.0,Meleset

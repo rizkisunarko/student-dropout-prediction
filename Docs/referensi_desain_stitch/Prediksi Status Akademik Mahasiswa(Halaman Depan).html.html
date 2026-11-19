@@ -1,0 +1,2338 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Prediksi Status Akademik Mahasiswa</title>
+<!-- External Fonts & Stylesheets -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<style>
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: #8e8e8e;
+      --nav-text: #2e2e2e;
+      --pill-dark: #28282a;
+      --sign-in-text: #c8c8c8;
+      --nav-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      --trust-bg: #28282a;
+      --trust-border: rgba(255, 255, 255, 0.4);
+      --trust-text: #c4c2c3;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --glass-bg: rgba(40, 40, 42, 0.58);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --field-bg: rgba(255, 255, 255, 0.06);
+      --field-border: rgba(255, 255, 255, 0.14);
+      --field-focus: rgba(255, 255, 255, 0.55);
+      --danger: #ff7a7a;
+      --c-dropout: #ff7a7a;
+      --c-enrolled: #f2c14e;
+      --c-graduate: #6ee7b7;
+      --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+      --font-display: "BubbledotICG-FinePos", "Geist Pixel Circle", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+    }
+
+    /* Video Background & Drift */
+    @keyframes bgDrift {
+      0% {
+        transform: scale(1.04) translate(0%, 0%);
+      }
+      100% {
+        transform: scale(1.12) translate(-1%, -1%);
+      }
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-video {
+      position: absolute;
+      inset: -5%;
+      width: 110%;
+      height: 110%;
+      object-fit: cover;
+      pointer-events: none;
+      animation: bgDrift 28s ease-in-out infinite alternate;
+    }
+
+    .bg-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.72) 100%);
+      transition: opacity 0.6s var(--ease);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+    }
+
+    body[data-view="predict"] .bg-vignette,
+    body[data-view="result"] .bg-vignette {
+      opacity: 0.85;
+    }
+
+    /* Layout Shell */
+    .page {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: clamp(14px, 2.2vh, 26px) clamp(16px, 3.2vw, 36px);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 20;
+    }
+
+    .logo-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: var(--nav-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.25s var(--ease);
+    }
+
+    .logo-btn:hover {
+      transform: scale(1.04) rotate(-8deg);
+    }
+
+    .logo-btn svg {
+      width: 72%;
+      height: 72%;
+      display: block;
+    }
+
+    /* Nav Pill with dynamic sliding 3-dots */
+    .nav-pill {
+      position: relative;
+      height: 46px;
+      width: 100%;
+      max-width: 280px;
+      background: #ffffff;
+      border-radius: 999px;
+      box-shadow: var(--nav-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 4px 8px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--nav-text);
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 999px;
+      opacity: 0.5;
+      transition: opacity 0.2s var(--ease);
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-link:hover {
+      opacity: 0.8;
+    }
+
+    .nav-link.active {
+      opacity: 1;
+      font-weight: 600;
+    }
+
+    .nav-dots {
+      position: absolute;
+      bottom: 7px;
+      left: 0;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #000000;
+      box-shadow: -5px 0 0 #000000, 5px 0 0 #000000;
+      pointer-events: none;
+      transition: transform 0.35s var(--ease);
+      transform: translateX(var(--dot-x, 70px));
+      z-index: 3;
+    }
+
+    /* Views Stage */
+    .stage {
+      flex: 1;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .view-panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(14px) scale(0.985);
+      transition: opacity 0.4s var(--ease), transform 0.45s var(--ease);
+      margin: auto;
+    }
+
+    body[data-view="home"] #view-home,
+    body[data-view="predict"] #view-predict,
+    body[data-view="result"] #view-result {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    /* HOME VIEW */
+    .home-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      max-width: 880px;
+      padding: 0 16px;
+      transition: transform 0.15s ease-out;
+    }
+
+    /* Trust Row */
+    @keyframes floatPill {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .trust-row {
+      --trust-size: clamp(34px, 4.2vw, 40px);
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: clamp(16px, 2.8vh, 26px);
+      animation: floatPill 5s ease-in-out infinite;
+    }
+
+    .avatar-stack {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .avatar-ring {
+      width: var(--trust-size);
+      height: var(--trust-size);
+      background: var(--trust-bg);
+      border: 1px solid var(--trust-border);
+      border-radius: 50%;
+      padding: 4px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.25s var(--ease);
+    }
+
+    .avatar-ring:hover {
+      transform: translateY(-3px) scale(1.08);
+      z-index: 10 !important;
+    }
+
+    .avatar-ring:nth-child(1) { z-index: 1; }
+    .avatar-ring:nth-child(2) { z-index: 2; margin-left: calc(var(--trust-size) * -0.4); }
+    .avatar-ring:nth-child(3) { z-index: 3; margin-left: calc(var(--trust-size) * -0.4); }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111111;
+      font-size: calc(var(--trust-size) * 0.36);
+    }
+
+    .trust-pill {
+      height: var(--trust-size);
+      background: var(--trust-bg);
+      border: 1px solid var(--trust-border);
+      border-radius: 999px;
+      margin-left: calc(var(--trust-size) * -0.4);
+      padding-left: calc(var(--trust-size) * 0.58);
+      padding-right: 18px;
+      display: flex;
+      align-items: center;
+      font-size: clamp(12px, 1.35vw, 13.5px);
+      font-weight: 500;
+      color: var(--trust-text);
+      white-space: nowrap;
+      position: relative;
+      z-index: 0;
+      letter-spacing: -0.01em;
+    }
+
+    /* Headline */
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 6.2vw, 76px);
+      line-height: 1.14;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      font-weight: normal;
+      margin-bottom: clamp(14px, 2.2vh, 22px);
+    }
+
+    .headline-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .ch {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: charIn 0.5s var(--ease) forwards;
+    }
+
+    @keyframes charIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes ledFlicker {
+      0%, 100% { opacity: 1; text-shadow: 0 0 16px rgba(255,255,255,0.4); }
+      92% { opacity: 1; }
+      93% { opacity: 0.85; text-shadow: none; }
+      94% { opacity: 1; }
+      97% { opacity: 0.9; }
+      98% { opacity: 1; text-shadow: 0 0 16px rgba(255,255,255,0.4); }
+    }
+
+    .headline.flicker {
+      animation: ledFlicker 7s infinite;
+    }
+
+    .subhead {
+      max-width: min(540px, 92%);
+      font-size: clamp(14px, 1.5vw, 16.5px);
+      color: #d6d6d6;
+      opacity: 0.85;
+      line-height: 1.55;
+      font-weight: 400;
+      margin-bottom: clamp(22px, 3.4vh, 32px);
+    }
+
+    /* CTA Button */
+    @keyframes ctaPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.25), 0 0 40px rgba(255,255,255,0.08);
+      }
+      50% {
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.35), 0 0 32px rgba(255,255,255,0.45), 0 0 60px rgba(255,255,255,0.2);
+      }
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #000000;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: clamp(14px, 1.5vw, 15px);
+      padding: clamp(12px, 1.7vh, 14px) clamp(24px, 3.2vw, 32px);
+      border-radius: 999px;
+      text-decoration: none;
+      animation: ctaPulse 3.5s ease-in-out infinite;
+      transition: transform 0.25s var(--ease), background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      background: #f4f4f4;
+    }
+
+    .cta-btn i {
+      font-size: 13px;
+      transition: transform 0.2s var(--ease);
+    }
+
+    .cta-btn:hover i {
+      transform: translateX(3px);
+    }
+
+    /* Stats Footer */
+    .stats-footer {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 920px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-items: center;
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), max-height 0.45s var(--ease), margin 0.4s var(--ease);
+      max-height: 90px;
+      opacity: 1;
+      transform: translateY(0);
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    body:not([data-view="home"]) .stats-footer {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(16px);
+      margin: 0;
+      pointer-events: none;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .stat-val-wrap {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      color: #ffffff;
+      font-family: var(--font-display);
+      line-height: 1.1;
+    }
+
+    .stat-icon {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.7vw, 30px);
+      margin-right: 3px;
+      color: #ffffff;
+    }
+
+    .stat-number {
+      font-size: clamp(20px, 2.7vw, 30px);
+      font-weight: normal;
+      color: #ffffff;
+    }
+
+    .stat-suffix {
+      font-size: clamp(14px, 1.8vw, 20px);
+      color: #ffffff;
+      margin-left: 2px;
+    }
+
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: clamp(11.5px, 1.25vw, 13px);
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    /* PREDICT VIEW (Glass Wizard Card) */
+    .wizard-card {
+      width: min(760px, 94vw);
+      height: min(100%, 610px);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Progress bar line at top */
+    .wizard-progress-bar {
+      height: 2.5px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .wizard-progress-fill {
+      height: 100%;
+      width: 20%;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+      transition: width 0.4s var(--ease);
+    }
+
+    /* Step Header */
+    .wizard-header {
+      padding: clamp(16px, 2.4vh, 22px) clamp(20px, 3.4vw, 32px) 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .step-counter {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .step-desc {
+      font-size: 12.5px;
+      color: #a4a4a8;
+      margin-top: 1px;
+    }
+
+    .step-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.25s var(--ease);
+    }
+
+    .step-dot.active {
+      background: #ffffff;
+      transform: scale(1.35);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .step-dot.completed {
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    /* Fields Scrollable Container */
+    .wizard-fields-viewport {
+      flex: 1;
+      overflow-y: auto;
+      padding: clamp(16px, 2.6vh, 24px) clamp(20px, 3.4vw, 32px);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+      mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent 100%);
+    }
+
+    .wizard-fields-viewport::-webkit-scrollbar {
+      width: 5px;
+    }
+    .wizard-fields-viewport::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+    }
+
+    .fields-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px 20px;
+    }
+
+    @media (max-width: 640px) {
+      .fields-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .field-item label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #cfcfd4;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .field-item .field-unit {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .field-input,
+    .field-select {
+      width: 100%;
+      height: 42px;
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 12px;
+      color: #ffffff;
+      padding: 0 14px;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field-input:focus,
+    .field-select:focus {
+      border-color: var(--field-focus);
+      background: rgba(255, 255, 255, 0.09);
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+    }
+
+    .field-input::placeholder {
+      color: #666668;
+    }
+
+    /* Remove arrows from number input */
+    .field-input[type="number"]::-webkit-outer-spin-button,
+    .field-input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .field-input[type="number"] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    .select-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-wrap select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .select-wrap select option {
+      background: #1c1c1e;
+      color: #ffffff;
+    }
+
+    .select-wrap .select-arrow {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      font-size: 11px;
+      color: #88888e;
+    }
+
+    /* Binary Segmented Control */
+    .segmented-control {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 12px;
+      height: 42px;
+      padding: 3px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .segmented-option {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: #a4a4a8;
+      border-radius: 9px;
+      position: relative;
+      z-index: 2;
+      transition: color 0.2s ease;
+    }
+
+    .segmented-option.selected {
+      color: #111111;
+      font-weight: 600;
+    }
+
+    .segmented-slider {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 3px;
+      width: calc(50% - 3px);
+      background: #ffffff;
+      border-radius: 9px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s var(--ease), opacity 0.2s ease;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .segmented-control[data-value="0"] .segmented-slider {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+
+    .segmented-control[data-value="1"] .segmented-slider {
+      opacity: 1;
+      transform: translateX(100%);
+    }
+
+    /* Macroeconomics Toggle Banner */
+    .macro-toggle-card {
+      grid-column: 1 / -1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 6px;
+    }
+
+    .macro-toggle-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .macro-toggle-info span.title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .macro-toggle-info span.desc {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* Modern Toggle Switch */
+    .switch-label {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .switch-label input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch-slider {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 34px;
+      transition: background-color 0.25s var(--ease);
+    }
+
+    .switch-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.25s var(--ease);
+    }
+
+    .switch-label input:checked + .switch-slider {
+      background-color: #ffffff;
+    }
+
+    .switch-label input:checked + .switch-slider:before {
+      transform: translateX(20px);
+      background-color: #111111;
+    }
+
+    /* Field Validation State */
+    @keyframes fieldShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+
+    .field-item.error .field-input,
+    .field-item.error .field-select,
+    .field-item.error .segmented-control {
+      border-color: var(--danger) !important;
+      animation: fieldShake 0.4s ease;
+    }
+
+    .error-msg {
+      font-size: 11px;
+      color: var(--danger);
+      display: none;
+      margin-top: 2px;
+    }
+
+    .field-item.error .error-msg {
+      display: block;
+    }
+
+    /* Wizard Actions Row */
+    .wizard-actions {
+      padding: 14px clamp(20px, 3.4vw, 32px) clamp(16px, 2.4vh, 22px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: rgba(20, 20, 22, 0.3);
+    }
+
+    .ghost-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #e5e5e5;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 9px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s var(--ease);
+    }
+
+    .ghost-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+    }
+
+    .pill-btn-action {
+      background: #ffffff;
+      border: none;
+      color: #111111;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s var(--ease);
+    }
+
+    .pill-btn-action:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(255, 255, 255, 0.2);
+    }
+
+    .sample-data-link {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .sample-data-link:hover {
+      color: #ffffff;
+    }
+
+    /* RESULT VIEW (Voting animation & Result Card) */
+    .result-container {
+      width: min(640px, 92vw);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Forest Voting State */
+    .voting-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+
+    .voting-dots-matrix {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .voting-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      transition: background-color 0.35s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .voting-caption {
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      animation: pulseCaption 1.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseCaption {
+      from { opacity: 0.6; }
+      to { opacity: 1; }
+    }
+
+    /* Result Card Presentation */
+    .result-card {
+      width: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      box-shadow: var(--glass-shadow);
+      padding: clamp(22px, 3.2vh, 32px) clamp(22px, 3.6vw, 36px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(16px) scale(0.96);
+      transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .result-card.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .result-overline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .result-class-name {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 6.5vw, 64px);
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .result-meaning {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #d6d6d8;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .meaning-accent-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px currentColor;
+    }
+
+    /* Probabilities bars */
+    .prob-bars-stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .prob-row {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .prob-row.winner {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .prob-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #e0e0e4;
+    }
+
+    .prob-percent {
+      font-family: var(--font-display);
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .prob-track {
+      height: 6px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .prob-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      transition: width 1s var(--ease);
+    }
+
+    .disclaimer-text {
+      font-size: 11.5px;
+      color: #8c8c92;
+      line-height: 1.45;
+      max-width: 480px;
+      margin-bottom: 14px;
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #a0a0a5;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+    }
+
+    .result-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+    }
+
+    /* Small screen adjustments */
+    @media (max-width: 640px) {
+      .header {
+        justify-content: center;
+      }
+      .headline {
+        font-size: 32px;
+      }
+      .stats-footer {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 14px;
+      }
+      .wizard-card {
+        height: min(100%, 540px);
+      }
+    }
+  </style>
+</head>
+<body data-view="home">
+<!-- Background Video -->
+<div class="bg">
+<video autoplay="" class="bg-video" loop="" muted="" playsinline="">
+<source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4">
+</video>
+<div class="bg-vignette"></div>
+</div>
+<!-- Page Layout -->
+<main class="page">
+<!-- Global Header -->
+<header class="header">
+<a aria-label="Beranda" class="logo-btn" href="#home">
+<!-- SVG Graduation Cap Outline -->
+<svg fill="none" stroke="#111111" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" viewBox="0 0 24 24">
+<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+<path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+</svg>
+</a>
+<nav aria-label="Navigasi Utama" class="nav-pill" id="navPill" style="--dot-x: 74.75627517700195px;">
+<a class="nav-link active" data-target-view="home" href="#home" id="navHome">Beranda</a>
+<a class="nav-link" data-target-view="predict" href="#predict" id="navPredict">Prediksi</a>
+<div class="nav-dots" id="navDots"></div>
+</nav>
+</header>
+<!-- Stage Panels Container -->
+<div class="stage">
+<!-- 1. HOME VIEW -->
+<section class="view-panel" id="view-home">
+<div class="home-content" id="homeHeroLayers" style="transform: translate3d(-8px, -5.66082px, 0px);">
+<!-- Trust Badge -->
+<div class="trust-row">
+<div class="avatar-stack">
+<div class="avatar-ring">
+<div class="avatar-inner">
+<i class="fa-solid fa-graduation-cap"></i>
+</div>
+</div>
+<div class="avatar-ring">
+<div class="avatar-inner">
+<i class="fa-solid fa-tree"></i>
+</div>
+</div>
+<div class="avatar-ring">
+<div class="avatar-inner">
+<i class="fa-solid fa-chart-simple"></i>
+</div>
+</div>
+</div>
+<div class="trust-pill">
+              Dataset UCI · 4.424 Mahasiswa
+            </div>
+</div>
+<!-- Headline with Char In Animation -->
+<h1 class="headline flicker" id="homeHeadline">
+<span class="headline-line" id="line1"><span class="ch">P</span><span class="ch">r</span><span class="ch">e</span><span class="ch">d</span><span class="ch">i</span><span class="ch">k</span><span class="ch">s</span><span class="ch">i</span><span class="ch" style="animation-delay: 324ms;">&nbsp;</span><span class="ch">S</span><span class="ch">t</span><span class="ch">a</span><span class="ch">t</span><span class="ch">u</span><span class="ch">s</span></span>
+<span class="headline-line" id="line2"><span class="ch">A</span><span class="ch">k</span><span class="ch">a</span><span class="ch">d</span><span class="ch">e</span><span class="ch">m</span><span class="ch">i</span><span class="ch">k</span><span class="ch" style="animation-delay: 674ms;">&nbsp;</span><span class="ch">M</span><span class="ch">a</span><span class="ch">h</span><span class="ch">a</span><span class="ch">s</span><span class="ch">i</span><span class="ch">s</span><span class="ch">w</span><span class="ch">a</span></span>
+</h1>
+<!-- Subhead -->
+<p class="subhead" style="max-width: 500px; color: rgb(208, 208, 208); opacity: 0.8;">
+            Masukkan data mahasiswa dan dapatkan prediksi Dropout, Enrolled, atau Graduate beserta probabilitasnya menggunakan model Random Forest.
+          </p>
+<!-- CTA Button -->
+<a class="cta-btn" href="#predict">
+<span>Mulai Prediksi</span>
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+</section>
+<!-- 2. PREDICT WIZARD VIEW -->
+<section class="view-panel" id="view-predict">
+<div class="wizard-card">
+<!-- Progress Bar Line -->
+<div class="wizard-progress-bar">
+<div class="wizard-progress-fill" id="wizardProgressFill"></div>
+</div>
+<!-- Step Header -->
+<div class="wizard-header">
+<div class="step-title-wrap">
+<span class="step-counter" id="stepCounterText">Langkah 1 / 5</span>
+<h2 class="step-title" id="stepTitleText">Data Demografi</h2>
+<p class="step-desc" id="stepDescText">Informasi latar belakang personal mahasiswa.</p>
+</div>
+<!-- Clickable Step Dots -->
+<div class="step-dots" id="stepDotsContainer"></div>
+</div>
+<!-- Fields Scrollable Area -->
+<form class="wizard-fields-viewport" id="predictForm" onsubmit="return false;">
+<div class="fields-grid" id="fieldsGrid">
+<!-- Dynamically populated based on current step -->
+</div>
+</form>
+<!-- Actions Footer -->
+<div class="wizard-actions">
+<div>
+<button class="ghost-btn" id="btnPrevStep" style="display: none;" type="button">
+<i class="fa-solid fa-chevron-left"></i>
+<span>Kembali</span>
+</button>
+</div>
+<div style="display: flex; align-items: center; gap: 14px;">
+<button class="sample-data-link" id="btnSampleData" type="button">
+                Isi contoh data
+              </button>
+<button class="pill-btn-action" id="btnNextStep" type="button">
+<span id="btnNextStepText">Lanjut</span>
+<i class="fa-solid fa-chevron-right" id="btnNextStepIcon"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. RESULT VIEW -->
+<section class="view-panel" id="view-result">
+<div class="result-container">
+<!-- Forest Voting State -->
+<div class="voting-stage" id="votingStage">
+<div class="voting-dots-matrix" id="votingGrid">
+<!-- 24 matrix dots (8x3) -->
+</div>
+<div class="voting-caption" id="votingCaption">Pohon keputusan sedang voting...</div>
+</div>
+<!-- Final Result Card -->
+<div class="result-card" id="resultCard">
+<div class="result-overline">HASIL PREDIKSI</div>
+<h2 class="result-class-name" id="resultClassName">Graduate</h2>
+<div class="result-meaning">
+<span class="meaning-accent-dot" id="meaningAccentDot"></span>
+<span id="resultMeaningText">Mahasiswa diprediksi lulus tepat waktu.</span>
+</div>
+<!-- Probability Bars -->
+<div class="prob-bars-stack">
+<!-- Graduate -->
+<div class="prob-row" id="rowGraduate">
+<div class="prob-meta">
+<span>Graduate</span>
+<span class="prob-percent" id="pctGraduate">0%</span>
+</div>
+<div class="prob-track">
+<div class="prob-fill" id="fillGraduate" style="background: var(--c-graduate);"></div>
+</div>
+</div>
+<!-- Enrolled -->
+<div class="prob-row" id="rowEnrolled">
+<div class="prob-meta">
+<span>Enrolled</span>
+<span class="prob-percent" id="pctEnrolled">0%</span>
+</div>
+<div class="prob-track">
+<div class="prob-fill" id="fillEnrolled" style="background: var(--c-enrolled);"></div>
+</div>
+</div>
+<!-- Dropout -->
+<div class="prob-row" id="rowDropout">
+<div class="prob-meta">
+<span>Dropout</span>
+<span class="prob-percent" id="pctDropout">0%</span>
+</div>
+<div class="prob-track">
+<div class="prob-fill" id="fillDropout" style="background: var(--c-dropout);"></div>
+</div>
+</div>
+</div>
+<p class="disclaimer-text">
+              Prediksi ini adalah pendukung early warning, bukan keputusan akademik final.
+            </p>
+<div class="demo-badge">
+<i class="fa-solid fa-circle-info"></i>
+<span>MODE DEMO · bukan hasil model</span>
+</div>
+<div class="result-actions">
+<button class="ghost-btn" id="btnEditInput" type="button">
+<i class="fa-solid fa-pen-to-square"></i>
+<span>Ubah Input</span>
+</button>
+<button class="pill-btn-action" id="btnNewPredict" type="button">
+<i class="fa-solid fa-arrow-rotate-right"></i>
+<span>Prediksi Baru</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Stats Footer (Home Only) -->
+<footer class="stats-footer" id="statsFooter"><div class="stat-item"><div class="stat-val-wrap"><span class="stat-icon">&lt;</span><span class="stat-number">3</span></div><span class="stat-label">Status Target</span></div><div class="stat-item"><div class="stat-val-wrap"><span class="stat-icon">#</span><span class="stat-number" id="statFeaturesCount">36</span></div><span class="stat-label">Input Model</span></div><div class="stat-item"><div class="stat-val-wrap"><span class="stat-icon">*</span><span class="stat-number">5</span><span class="stat-suffix">-Fold</span></div><span class="stat-label">Stratified CV</span></div><div class="stat-item"><div class="stat-val-wrap"><span class="stat-icon">%</span><span class="stat-number">80</span><span class="stat-suffix">:20</span></div><span class="stat-label">Split Train : Test</span></div></footer>
+</main>
+<!-- Complete Logic & Data Script -->
+<script>
+    /**
+     * FEATURES ARRAY & DEFINITIONS (Appendix A Specification)
+     */
+    window.FEATURES = [
+      // STEP 1: Demografi
+      {
+        id: "marital_status",
+        step: 1,
+        label: "Status Pernikahan",
+        type: "select",
+        options: [
+          { val: "1", text: "Lajang (Single)" },
+          { val: "2", text: "Menikah (Married)" },
+          { val: "3", text: "Duda / Janda (Widower)" },
+          { val: "4", text: "Bercerai (Divorced)" },
+          { val: "5", text: "Pasangan Sah (Facto Union)" },
+          { val: "6", text: "Pisah Ranjang (Separated)" }
+        ]
+      },
+      {
+        id: "gender",
+        step: 1,
+        label: "Jenis Kelamin",
+        type: "binary",
+        options: [{ val: "1", text: "Laki-laki" }, { val: "0", text: "Perempuan" }]
+      },
+      {
+        id: "age_at_enrollment",
+        step: 1,
+        label: "Usia saat Masuk",
+        type: "number",
+        unit: "tahun",
+        placeholder: "Contoh: 19",
+        min: 16,
+        max: 75
+      },
+      {
+        id: "nationality",
+        step: 1,
+        label: "Kewarganegaraan",
+        type: "select",
+        options: [
+          { val: "1", text: "Portugal (Domestik)" },
+          { val: "2", text: "Jerman" },
+          { val: "6", text: "Spanyol" },
+          { val: "11", text: "Italia" },
+          { val: "13", text: "Belanda" },
+          { val: "14", text: "Inggris Raya" },
+          { val: "21", text: "Brazil" },
+          { val: "62", text: "Lainnya" }
+        ]
+      },
+      {
+        id: "international",
+        step: 1,
+        label: "Mahasiswa Internasional",
+        type: "binary",
+        options: [{ val: "0", text: "Tidak" }, { val: "1", text: "Ya" }]
+      },
+      {
+        id: "displaced",
+        step: 1,
+        label: "Pengungsi / Pindahan (Displaced)",
+        type: "binary",
+        options: [{ val: "0", text: "Tidak" }, { val: "1", text: "Ya" }]
+      },
+      {
+        id: "educational_special_needs",
+        step: 1,
+        label: "Kebutuhan Khusus Edukasi",
+        type: "binary",
+        options: [{ val: "0", text: "Tidak" }, { val: "1", text: "Ya" }]
+      },
+
+      // STEP 2: Pendaftaran
+      {
+        id: "application_mode",
+        step: 2,
+        label: "Jalur Pendaftaran",
+        type: "select",
+        options: [
+          { val: "1", text: "Fase 1 - Jalur Umum (1st Phase General)" },
+          { val: "8", text: "Pemegang Ijazah Pendidikan Tinggi" },
+          { val: "12", text: "Pindahan Antar Kampus / Prodi" },
+          { val: "17", text: "Fase 2 - Jalur Umum (2nd Phase General)" },
+          { val: "39", text: "Khusus di atas 23 Tahun" },
+          { val: "43", text: "Pindah dari Luar Negeri" }
+        ]
+      },
+      {
+        id: "application_order",
+        step: 2,
+        label: "Urutan Pilihan Prodi",
+        type: "number",
+        unit: "pilihan ke- (0 - 9)",
+        placeholder: "1",
+        min: 0,
+        max: 9
+      },
+      {
+        id: "course",
+        step: 2,
+        label: "Program Studi",
+        type: "select",
+        options: [
+          { val: "9147", text: "Informatika / Ilmu Komputer" },
+          { val: "9070", text: "Desain Komunikasi & Animasi" },
+          { val: "9238", text: "Manajemen Sosial & Bisnis" },
+          { val: "9254", text: "Teknik Pariwisata" },
+          { val: "9500", text: "Keperawatan" },
+          { val: "9670", text: "Manajemen Agribisnis" },
+          { val: "9701", text: "Teknologi Rekayasa" }
+        ]
+      },
+      {
+        id: "daytime_evening_attendance",
+        step: 2,
+        label: "Waktu Kuliah",
+        type: "binary",
+        options: [{ val: "1", text: "Reguler (Pagi/Siang)" }, { val: "0", text: "Kelas Malam" }]
+      },
+      {
+        id: "previous_qualification",
+        step: 2,
+        label: "Kualifikasi Sebelumnya",
+        type: "select",
+        options: [
+          { val: "1", text: "Pendidikan Menengah Atas (SMA/SMK)" },
+          { val: "2", text: "Sarjana / Pendidikan Tinggi" },
+          { val: "3", text: "Diploma / Vokasi" },
+          { val: "4", text: "Magister / S2" }
+        ]
+      },
+      {
+        id: "previous_qualification_grade",
+        step: 2,
+        label: "Nilai Kualifikasi Sebelumnya",
+        type: "number",
+        unit: "skala 0 - 200",
+        placeholder: "Contoh: 140",
+        min: 0,
+        max: 200
+      },
+      {
+        id: "admission_grade",
+        step: 2,
+        label: "Nilai Ujian Masuk (Admission)",
+        type: "number",
+        unit: "skala 0 - 200",
+        placeholder: "Contoh: 135",
+        min: 0,
+        max: 200
+      },
+
+      // STEP 3: Kondisi Sosial-Ekonomi
+      {
+        id: "mothers_qualification",
+        step: 3,
+        label: "Pendidikan Ibu",
+        type: "select",
+        options: [
+          { val: "1", text: "Pendidikan Menengah Atas (SMA)" },
+          { val: "2", text: "Pendidikan Tinggi (Sarjana)" },
+          { val: "3", text: "Pendidikan Dasar (SMP/SD)" },
+          { val: "4", text: "Tidak Sekolah" }
+        ]
+      },
+      {
+        id: "fathers_qualification",
+        step: 3,
+        label: "Pendidikan Ayah",
+        type: "select",
+        options: [
+          { val: "1", text: "Pendidikan Menengah Atas (SMA)" },
+          { val: "2", text: "Pendidikan Tinggi (Sarjana)" },
+          { val: "3", text: "Pendidikan Dasar (SMP/SD)" },
+          { val: "4", text: "Tidak Sekolah" }
+        ]
+      },
+      {
+        id: "mothers_occupation",
+        step: 3,
+        label: "Pekerjaan Ibu",
+        type: "select",
+        options: [
+          { val: "1", text: "Tenaga Ahli / Profesional" },
+          { val: "2", text: "Pekerja Kantor / Administrasi" },
+          { val: "3", text: "Pedagang / Jasa Layanan" },
+          { val: "4", text: "Pekerja Terampil / Industri" },
+          { val: "5", text: "Ibu Rumah Tangga / Tidak Bekerja" }
+        ]
+      },
+      {
+        id: "fathers_occupation",
+        step: 3,
+        label: "Pekerjaan Ayah",
+        type: "select",
+        options: [
+          { val: "1", text: "Tenaga Ahli / Profesional" },
+          { val: "2", text: "Pekerja Kantor / Administrasi" },
+          { val: "3", text: "Wiraswasta / Pedagang" },
+          { val: "4", text: "Pekerja Industri / Lapangan" },
+          { val: "5", text: "Tidak Bekerja / Pensiun" }
+        ]
+      },
+      {
+        id: "debtor",
+        step: 3,
+        label: "Memiliki Hutang Pinjaman Mahasiswa?",
+        type: "binary",
+        options: [{ val: "0", text: "Tidak" }, { val: "1", text: "Ya" }]
+      },
+      {
+        id: "tuition_fees_up_to_date",
+        step: 3,
+        label: "UKT / SPP Terbayar Lancar?",
+        type: "binary",
+        options: [{ val: "1", text: "Ya (Lancar)" }, { val: "0", text: "Menunggak" }]
+      },
+      {
+        id: "scholarship_holder",
+        step: 3,
+        label: "Penerima Beasiswa?",
+        type: "binary",
+        options: [{ val: "0", text: "Bukan" }, { val: "1", text: "Penerima Beasiswa" }]
+      },
+
+      // STEP 4: Akademik Semester 1
+      {
+        id: "cu_1st_credited",
+        step: 4,
+        label: "SKS Diakui (Credited)",
+        type: "number",
+        unit: "SKS",
+        placeholder: "0",
+        min: 0,
+        max: 30
+      },
+      {
+        id: "cu_1st_enrolled",
+        step: 4,
+        label: "SKS Diambil (Enrolled)",
+        type: "number",
+        unit: "SKS",
+        placeholder: "Contoh: 6",
+        min: 0,
+        max: 30
+      },
+      {
+        id: "cu_1st_evaluations",
+        step: 4,
+        label: "Jumlah Ujian / Evaluasi Diikuti",
+        type: "number",
+        unit: "kali",
+        placeholder: "Contoh: 7",
+        min: 0,
+        max: 40
+      },
+      {
+        id: "cu_1st_approved",
+        step: 4,
+        label: "SKS Lulus (Approved)",
+        type: "number",
+        unit: "SKS",
+        placeholder: "Contoh: 5",
+        min: 0,
+        max: 30
+      },
+      {
+        id: "cu_1st_grade",
+        step: 4,
+        label: "Rata-rata Nilai Semester 1",
+        type: "number",
+        unit: "skala 0 - 20",
+        placeholder: "Contoh: 13.8",
+        min: 0,
+        max: 20,
+        stepAttr: "0.1"
+      },
+      {
+        id: "cu_1st_without_evaluations",
+        step: 4,
+        label: "Mata Kuliah Tanpa Evaluasi",
+        type: "number",
+        unit: "MK",
+        placeholder: "0",
+        min: 0,
+        max: 10
+      },
+
+      // STEP 5: Makroekonomi
+      {
+        id: "unemployment_rate",
+        step: 5,
+        label: "Tingkat Pengangguran Wilayah",
+        type: "number",
+        unit: "%",
+        placeholder: "11.1",
+        min: 0,
+        max: 100,
+        stepAttr: "0.1",
+        median: 11.1
+      },
+      {
+        id: "inflation_rate",
+        step: 5,
+        label: "Tingkat Inflasi",
+        type: "number",
+        unit: "%",
+        placeholder: "1.4",
+        min: -10,
+        max: 50,
+        stepAttr: "0.1",
+        median: 1.4
+      },
+      {
+        id: "gdp",
+        step: 5,
+        label: "Pertumbuhan GDP",
+        type: "number",
+        unit: "%",
+        placeholder: "0.32",
+        min: -20,
+        max: 20,
+        stepAttr: "0.01",
+        median: 0.32
+      }
+    ];
+
+    const STEPS_CONFIG = [
+      {
+        step: 1,
+        title: "Data Demografi",
+        desc: "Informasi latar belakang personal mahasiswa."
+      },
+      {
+        step: 2,
+        title: "Data Pendaftaran",
+        desc: "Jalur masuk dan rekam jejak awal masuk perkuliahan."
+      },
+      {
+        step: 3,
+        title: "Kondisi Sosial-Ekonomi",
+        desc: "Status finansial keluarga dan kepemilikan beasiswa."
+      },
+      {
+        step: 4,
+        title: "Akademik Semester 1",
+        desc: "Beban studi, kehadiran ujian, dan capaian nilai awal."
+      },
+      {
+        step: 5,
+        title: "Konteks Makroekonomi",
+        desc: "Kondisi ekonomi wilayah saat periode pendaftaran mahasiswa."
+      }
+    ];
+
+    // State
+    let currentStep = 1;
+    const formValues = {};
+    let useMedianMacro = true;
+
+    // Split Character Animation for Headline
+    function initHeadlineAnimation() {
+      const line1 = document.getElementById("line1");
+      const line2 = document.getElementById("line2");
+      if (!line1 || !line2) return;
+
+      function splitToSpans(el, baseDelay) {
+        const text = el.textContent.trim();
+        el.innerHTML = "";
+        let delay = baseDelay;
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i];
+          const span = document.createElement("span");
+          span.className = "ch";
+          span.textContent = char === " " ? "\u00A0" : char;
+          span.style.animationDelay = `${delay}ms`;
+          el.appendChild(span);
+          delay += 28;
+        }
+      }
+
+      splitToSpans(line1, 100);
+      splitToSpans(line2, 450);
+    }
+
+    // Parallax mouse drift on Home
+    function initHomeParallax() {
+      const hero = document.getElementById("homeHeroLayers");
+      window.addEventListener("mousemove", (e) => {
+        if (document.body.getAttribute("data-view") !== "home") return;
+        const xNorm = (e.clientX / window.innerWidth - 0.5) * 16;
+        const yNorm = (e.clientY / window.innerHeight - 0.5) * 16;
+        hero.style.transform = `translate3d(${xNorm}px, ${yNorm}px, 0)`;
+      });
+    }
+
+    // Nav Dots Indicator Slider
+    function updateNavDots(targetView) {
+      const activeBtn = targetView === "home" ? document.getElementById("navHome") : document.getElementById("navPredict");
+      const navPill = document.getElementById("navPill");
+      const navDots = document.getElementById("navDots");
+      if (!activeBtn || !navPill || !navDots) return;
+
+      document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("active"));
+      activeBtn.classList.add("active");
+
+      const pillRect = navPill.getBoundingClientRect();
+      const btnRect = activeBtn.getBoundingClientRect();
+      const centerRelative = (btnRect.left + btnRect.width / 2) - pillRect.left;
+      navPill.style.setProperty("--dot-x", `${centerRelative}px`);
+    }
+
+    // Hash Router
+    function router() {
+      const rawHash = window.location.hash.replace("#", "") || "home";
+      const validViews = ["home", "predict", "result"];
+      const view = validViews.includes(rawHash) ? rawHash : "home";
+
+      document.body.setAttribute("data-view", view);
+      updateNavDots(view === "home" ? "home" : "predict");
+
+      if (view === "home") {
+        triggerStatsCountUp();
+      } else if (view === "predict") {
+        renderCurrentStep();
+      } else if (view === "result") {
+        runForestVotingAndResult();
+      }
+    }
+
+    // Stats Count Up Animation
+    let statsAnimated = false;
+    function triggerStatsCountUp() {
+      if (statsAnimated) return;
+      statsAnimated = true;
+
+      const statNumberEls = document.querySelectorAll(".stat-number[data-target]");
+      statNumberEls.forEach((el, idx) => {
+        const target = parseFloat(el.getAttribute("data-target")) || 0;
+        const decimals = parseInt(el.getAttribute("data-decimals"), 10) || 0;
+        const duration = 1400;
+        const delay = 300 + idx * 120;
+
+        setTimeout(() => {
+          let startTime = null;
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const val = easeOut * target;
+            el.textContent = val.toFixed(decimals);
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent = target.toFixed(decimals);
+            }
+          }
+          requestAnimationFrame(step);
+        }, delay);
+      });
+    }
+
+    // Render Steps Indicator in Wizard
+    function renderStepDots() {
+      const container = document.getElementById("stepDotsContainer");
+      if (!container) return;
+      container.innerHTML = "";
+      STEPS_CONFIG.forEach((s) => {
+        const dot = document.createElement("button");
+        dot.className = "step-dot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Langkah ${s.step}: ${s.title}`);
+        if (s.step === currentStep) dot.classList.add("active");
+        if (s.step < currentStep) dot.classList.add("completed");
+        dot.addEventListener("click", () => {
+          if (s.step <= currentStep || validateCurrentStep(false)) {
+            saveCurrentStepValues();
+            currentStep = s.step;
+            renderCurrentStep();
+          }
+        });
+        container.appendChild(dot);
+      });
+    }
+
+    // Build Current Step Fields
+    function renderCurrentStep() {
+      renderStepDots();
+      const cfg = STEPS_CONFIG.find(c => c.step === currentStep);
+      if (!cfg) return;
+
+      document.getElementById("stepCounterText").textContent = `Langkah ${currentStep} / ${STEPS_CONFIG.length}`;
+      document.getElementById("stepTitleText").textContent = cfg.title;
+      document.getElementById("stepDescText").textContent = cfg.desc;
+
+      // Progress Fill
+      const pct = (currentStep / STEPS_CONFIG.length) * 100;
+      document.getElementById("wizardProgressFill").style.width = `${pct}%`;
+
+      // Buttons visibility
+      const btnPrev = document.getElementById("btnPrevStep");
+      btnPrev.style.display = currentStep > 1 ? "inline-flex" : "none";
+
+      const btnNextText = document.getElementById("btnNextStepText");
+      const btnNextIcon = document.getElementById("btnNextStepIcon");
+      if (currentStep === STEPS_CONFIG.length) {
+        btnNextText.textContent = "Prediksi Status";
+        btnNextIcon.className = "fa-solid fa-bolt";
+      } else {
+        btnNextText.textContent = "Lanjut";
+        btnNextIcon.className = "fa-solid fa-chevron-right";
+      }
+
+      // Render Field Items
+      const fieldsGrid = document.getElementById("fieldsGrid");
+      fieldsGrid.innerHTML = "";
+
+      // Macro switch for Step 5
+      if (currentStep === 5) {
+        const macroCard = document.createElement("div");
+        macroCard.className = "macro-toggle-card";
+        macroCard.innerHTML = `
+          <div class="macro-toggle-info">
+            <span class="title">Gunakan Nilai Median Dataset</span>
+            <span class="desc">Mengisi pengangguran (11.1%), inflasi (1.4%), GDP (0.32%) standar.</span>
+          </div>
+          <label class="switch-label">
+            <input type="checkbox" id="macroSwitch" ${useMedianMacro ? "checked" : ""}>
+            <span class="switch-slider"></span>
+          </label>
+        `;
+        fieldsGrid.appendChild(macroCard);
+
+        setTimeout(() => {
+          const sw = document.getElementById("macroSwitch");
+          sw.addEventListener("change", (e) => {
+            useMedianMacro = e.target.checked;
+            toggleMacroInputs();
+          });
+        }, 0);
+      }
+
+      const stepFields = window.FEATURES.filter(f => f.step === currentStep);
+      stepFields.forEach((f) => {
+        const item = document.createElement("div");
+        item.className = "field-item";
+        item.id = `field_wrap_${f.id}`;
+
+        const curVal = formValues[f.id] !== undefined ? formValues[f.id] : "";
+
+        if (f.type === "select") {
+          item.innerHTML = `
+            <label for="${f.id}">
+              <span>${f.label}</span>
+              ${f.unit ? `<span class="field-unit">${f.unit}</span>` : ""}
+            </label>
+            <div class="select-wrap">
+              <select class="field-select" id="${f.id}" name="${f.id}">
+                <option value="">-- Pilih Opsi --</option>
+                ${f.options.map(opt => `<option value="${opt.val}" ${String(curVal) === String(opt.val) ? "selected" : ""}>${opt.text}</option>`).join("")}
+              </select>
+              <i class="fa-solid fa-chevron-down select-arrow"></i>
+            </div>
+            <span class="error-msg">Pilihan ini wajib ditentukan</span>
+          `;
+        } else if (f.type === "number") {
+          item.innerHTML = `
+            <label for="${f.id}">
+              <span>${f.label}</span>
+              ${f.unit ? `<span class="field-unit">${f.unit}</span>` : ""}
+            </label>
+            <input
+              type="number"
+              class="field-input"
+              id="${f.id}"
+              name="${f.id}"
+              placeholder="${f.placeholder || ''}"
+              min="${f.min !== undefined ? f.min : ''}"
+              max="${f.max !== undefined ? f.max : ''}"
+              step="${f.stepAttr || 'any'}"
+              value="${curVal !== '' ? curVal : ''}"
+            />
+            <span class="error-msg">Mohon isi nilai yang valid</span>
+          `;
+        } else if (f.type === "binary") {
+          item.innerHTML = `
+            <label>
+              <span>${f.label}</span>
+            </label>
+            <div class="segmented-control" id="${f.id}_control" data-value="${curVal !== '' ? curVal : ''}">
+              <div class="segmented-slider"></div>
+              ${f.options.map((opt, i) => `
+                <div class="segmented-option ${String(curVal) === String(opt.val) ? "selected" : ""}" data-val="${opt.val}">
+                  ${opt.text}
+                </div>
+              `).join("")}
+            </div>
+            <span class="error-msg">Mohon tentukan opsi pilihan</span>
+          `;
+
+          setTimeout(() => {
+            const ctrl = document.getElementById(`${f.id}_control`);
+            if (ctrl) {
+              ctrl.querySelectorAll(".segmented-option").forEach((optEl) => {
+                optEl.addEventListener("click", () => {
+                  const val = optEl.getAttribute("data-val");
+                  ctrl.setAttribute("data-value", val);
+                  ctrl.querySelectorAll(".segmented-option").forEach(o => o.classList.remove("selected"));
+                  optEl.classList.add("selected");
+                  formValues[f.id] = val;
+                  item.classList.remove("error");
+                });
+              });
+            }
+          }, 0);
+        }
+
+        fieldsGrid.appendChild(item);
+      });
+
+      if (currentStep === 5) {
+        toggleMacroInputs();
+      }
+    }
+
+    function toggleMacroInputs() {
+      const macroFields = ["unemployment_rate", "inflation_rate", "gdp"];
+      macroFields.forEach((fid) => {
+        const inp = document.getElementById(fid);
+        const fMeta = window.FEATURES.find(f => f.id === fid);
+        if (inp && fMeta) {
+          if (useMedianMacro) {
+            inp.value = fMeta.median;
+            formValues[fid] = fMeta.median;
+            inp.disabled = true;
+            inp.style.opacity = "0.6";
+          } else {
+            inp.disabled = false;
+            inp.style.opacity = "1";
+          }
+        }
+      });
+    }
+
+    function saveCurrentStepValues() {
+      const stepFields = window.FEATURES.filter(f => f.step === currentStep);
+      stepFields.forEach((f) => {
+        if (f.type === "binary") {
+          const ctrl = document.getElementById(`${f.id}_control`);
+          if (ctrl) {
+            const v = ctrl.getAttribute("data-value");
+            if (v !== "" && v !== null) formValues[f.id] = v;
+          }
+        } else {
+          const el = document.getElementById(f.id);
+          if (el) formValues[f.id] = el.value.trim();
+        }
+      });
+    }
+
+    function validateCurrentStep(showVisualErrors = true) {
+      saveCurrentStepValues();
+      const stepFields = window.FEATURES.filter(f => f.step === currentStep);
+      let isValid = true;
+
+      stepFields.forEach((f) => {
+        const wrap = document.getElementById(`field_wrap_${f.id}`);
+        const val = formValues[f.id];
+        let fieldValid = true;
+
+        if (val === undefined || val === "" || val === null) {
+          fieldValid = false;
+        } else if (f.type === "number") {
+          const num = parseFloat(val);
+          if (isNaN(num)) fieldValid = false;
+          if (f.min !== undefined && num < f.min) fieldValid = false;
+          if (f.max !== undefined && num > f.max) fieldValid = false;
+        }
+
+        if (!fieldValid) {
+          isValid = false;
+          if (showVisualErrors && wrap) {
+            wrap.classList.add("error");
+          }
+        } else if (wrap) {
+          wrap.classList.remove("error");
+        }
+      });
+
+      return isValid;
+    }
+
+    // Populate Sample Realistic Data
+    function fillSampleData() {
+      const sample = {
+        marital_status: "1",
+        gender: "0",
+        age_at_enrollment: "19",
+        nationality: "1",
+        international: "0",
+        displaced: "1",
+        educational_special_needs: "0",
+
+        application_mode: "1",
+        application_order: "1",
+        course: "9147",
+        daytime_evening_attendance: "1",
+        previous_qualification: "1",
+        previous_qualification_grade: "148",
+        admission_grade: "152",
+
+        mothers_qualification: "2",
+        fathers_qualification: "1",
+        mothers_occupation: "2",
+        fathers_occupation: "3",
+        debtor: "0",
+        tuition_fees_up_to_date: "1",
+        scholarship_holder: "1",
+
+        cu_1st_credited: "0",
+        cu_1st_enrolled: "6",
+        cu_1st_evaluations: "7",
+        cu_1st_approved: "6",
+        cu_1st_grade: "15.4",
+        cu_1st_without_evaluations: "0",
+
+        unemployment_rate: "11.1",
+        inflation_rate: "1.4",
+        gdp: "0.32"
+      };
+
+      Object.assign(formValues, sample);
+      renderCurrentStep();
+    }
+
+    // Forest Voting Animation & Prediction Adapter
+    function runForestVotingAndResult() {
+      const votingStage = document.getElementById("votingStage");
+      const resultCard = document.getElementById("resultCard");
+      const votingGrid = document.getElementById("votingGrid");
+      const caption = document.getElementById("votingCaption");
+
+      // Reset
+      votingStage.style.display = "flex";
+      votingStage.style.opacity = "1";
+      resultCard.classList.remove("revealed");
+      caption.textContent = "Pohon keputusan sedang voting...";
+      caption.style.color = "#ffffff";
+
+      // 24 decision tree dots
+      votingGrid.innerHTML = "";
+      const dotEls = [];
+      for (let i = 0; i < 24; i++) {
+        const d = document.createElement("div");
+        d.className = "voting-dot";
+        votingGrid.appendChild(d);
+        dotEls.push(d);
+      }
+
+      // Model Prediction Heuristic Simulator
+      // Calculate realistic prob based on student data
+      const approved = parseFloat(formValues.cu_1st_approved) || 0;
+      const enrolled = parseFloat(formValues.cu_1st_enrolled) || 6;
+      const tuition = formValues.tuition_fees_up_to_date === "1";
+      const debtor = formValues.debtor === "1";
+      const scholarship = formValues.scholarship_holder === "1";
+      const grade = parseFloat(formValues.cu_1st_grade) || 12;
+
+      let scoreGrad = 0.35;
+      let scoreDrop = 0.35;
+      let scoreEnr = 0.30;
+
+      // Factors
+      if (tuition) { scoreGrad += 0.2; scoreDrop -= 0.15; }
+      else { scoreDrop += 0.35; scoreGrad -= 0.2; }
+
+      if (debtor) { scoreDrop += 0.15; scoreGrad -= 0.1; }
+      if (scholarship) { scoreGrad += 0.25; scoreDrop -= 0.2; }
+
+      const completionRatio = enrolled > 0 ? (approved / enrolled) : 0.5;
+      if (completionRatio >= 0.8) { scoreGrad += 0.3; scoreDrop -= 0.25; }
+      else if (completionRatio < 0.4) { scoreDrop += 0.35; scoreGrad -= 0.25; }
+
+      if (grade >= 14) { scoreGrad += 0.25; scoreDrop -= 0.2; }
+      else if (grade < 10) { scoreDrop += 0.25; }
+
+      // Enrolled balance
+      if (completionRatio > 0.4 && completionRatio < 0.8) {
+        scoreEnr += 0.25;
+      }
+
+      // Normalization
+      scoreGrad = Math.max(0.04, scoreGrad);
+      scoreDrop = Math.max(0.04, scoreDrop);
+      scoreEnr = Math.max(0.04, scoreEnr);
+      const total = scoreGrad + scoreDrop + scoreEnr;
+
+      const pGrad = Math.round((scoreGrad / total) * 100);
+      const pDrop = Math.round((scoreDrop / total) * 100);
+      const pEnr = Math.max(0, 100 - (pGrad + pDrop));
+
+      // Twinkle dots sequential light up
+      let interval = setInterval(() => {
+        const randDot = dotEls[Math.floor(Math.random() * dotEls.length)];
+        randDot.style.backgroundColor = "rgba(255,255,255,0.9)";
+        randDot.style.boxShadow = "0 0 10px rgba(255,255,255,0.8)";
+        setTimeout(() => {
+          randDot.style.backgroundColor = "rgba(255,255,255,0.2)";
+          randDot.style.boxShadow = "none";
+        }, 300);
+      }, 70);
+
+      // Phase 2: Assign colors to voting dots
+      setTimeout(() => {
+        clearInterval(interval);
+        caption.textContent = "Menghitung konsensus 100 estimator...";
+
+        const numGradDots = Math.round((pGrad / 100) * 24);
+        const numEnrDots = Math.round((pEnr / 100) * 24);
+
+        dotEls.forEach((dot, idx) => {
+          setTimeout(() => {
+            if (idx < numGradDots) {
+              dot.style.backgroundColor = "var(--c-graduate)";
+              dot.style.boxShadow = "0 0 8px rgba(110,231,183,0.7)";
+            } else if (idx < numGradDots + numEnrDots) {
+              dot.style.backgroundColor = "var(--c-enrolled)";
+              dot.style.boxShadow = "0 0 8px rgba(242,193,78,0.7)";
+            } else {
+              dot.style.backgroundColor = "var(--c-dropout)";
+              dot.style.boxShadow = "0 0 8px rgba(255,122,122,0.7)";
+            }
+          }, idx * 25);
+        });
+      }, 1400);
+
+      // Phase 3: Transition to Result Card
+      setTimeout(() => {
+        votingStage.style.opacity = "0";
+        setTimeout(() => {
+          votingStage.style.display = "none";
+          showResultCard(pGrad, pEnr, pDrop);
+        }, 350);
+      }, 2500);
+    }
+
+    // Scramble reveal text
+    function scrambleText(targetEl, finalWord) {
+      const glyphs = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ*#%";
+      let iterations = 0;
+      const maxIterations = 14;
+      const interval = setInterval(() => {
+        targetEl.textContent = finalWord
+          .split("")
+          .map((char, index) => {
+            if (index < iterations) {
+              return finalWord[index];
+            }
+            return glyphs[Math.floor(Math.random() * glyphs.length)];
+          })
+          .join("");
+
+        if (iterations >= finalWord.length) {
+          clearInterval(interval);
+          targetEl.textContent = finalWord;
+        }
+        iterations += 1 / 2;
+      }, 35);
+    }
+
+    function showResultCard(pGrad, pEnr, pDrop) {
+      const card = document.getElementById("resultCard");
+      const titleEl = document.getElementById("resultClassName");
+      const meaningEl = document.getElementById("resultMeaningText");
+      const accentDot = document.getElementById("meaningAccentDot");
+
+      // Winner determination
+      let winner = "Graduate";
+      let maxP = pGrad;
+      if (pDrop > maxP) { winner = "Dropout"; maxP = pDrop; }
+      if (pEnr > maxP) { winner = "Enrolled"; maxP = pEnr; }
+
+      card.classList.add("revealed");
+      scrambleText(titleEl, winner);
+
+      // Reset bars highlight
+      document.querySelectorAll(".prob-row").forEach(r => r.classList.remove("winner"));
+
+      if (winner === "Graduate") {
+        meaningEl.textContent = "Mahasiswa diprediksi lulus tepat waktu dan memenuhi syarat akademik.";
+        accentDot.style.backgroundColor = "var(--c-graduate)";
+        document.getElementById("rowGraduate").classList.add("winner");
+      } else if (winner === "Enrolled") {
+        meaningEl.textContent = "Mahasiswa diprediksi tetap aktif terdaftar namun membutuhkan monitoring progres.";
+        accentDot.style.backgroundColor = "var(--c-enrolled)";
+        document.getElementById("rowEnrolled").classList.add("winner");
+      } else {
+        meaningEl.textContent = "Mahasiswa terdeteksi berisiko tinggi putus studi (early warning alert).";
+        accentDot.style.backgroundColor = "var(--c-dropout)";
+        document.getElementById("rowDropout").classList.add("winner");
+      }
+
+      // Animate percentage bars
+      animatePercentBar("fillGraduate", "pctGraduate", pGrad);
+      animatePercentBar("fillEnrolled", "pctEnrolled", pEnr);
+      animatePercentBar("fillDropout", "pctDropout", pDrop);
+    }
+
+    function animatePercentBar(fillId, labelId, targetPct) {
+      const fillEl = document.getElementById(fillId);
+      const labelEl = document.getElementById(labelId);
+      fillEl.style.width = "0%";
+
+      setTimeout(() => {
+        fillEl.style.width = `${targetPct}%`;
+        let cur = 0;
+        const dur = 800;
+        const startTime = performance.now();
+
+        function countUp(now) {
+          const progress = Math.min((now - startTime) / dur, 1);
+          cur = Math.round(progress * targetPct);
+          labelEl.textContent = `${cur}%`;
+          if (progress < 1) requestAnimationFrame(countUp);
+        }
+        requestAnimationFrame(countUp);
+      }, 150);
+    }
+
+    // Init & Attach Listeners
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set dynamic feature count in footer
+      const featCountEl = document.getElementById("statFeaturesCount");
+      if (featCountEl) featCountEl.setAttribute("data-target", window.FEATURES.length);
+
+      initHeadlineAnimation();
+      initHomeParallax();
+
+      // Next / Submit Button
+      document.getElementById("btnNextStep").addEventListener("click", () => {
+        if (!validateCurrentStep(true)) return;
+
+        if (currentStep < STEPS_CONFIG.length) {
+          currentStep++;
+          renderCurrentStep();
+        } else {
+          window.location.hash = "#result";
+        }
+      });
+
+      // Prev Button
+      document.getElementById("btnPrevStep").addEventListener("click", () => {
+        if (currentStep > 1) {
+          saveCurrentStepValues();
+          currentStep--;
+          renderCurrentStep();
+        }
+      });
+
+      // Sample Data Button
+      document.getElementById("btnSampleData").addEventListener("click", () => {
+        fillSampleData();
+      });
+
+      // Edit Input & New Predict Buttons in Result Card
+      document.getElementById("btnEditInput").addEventListener("click", () => {
+        window.location.hash = "#predict";
+      });
+
+      document.getElementById("btnNewPredict").addEventListener("click", () => {
+        Object.keys(formValues).forEach(k => delete formValues[k]);
+        currentStep = 1;
+        window.location.hash = "#predict";
+      });
+
+      // Listen to Hash changes
+      window.addEventListener("hashchange", router);
+
+      // Handle resize for nav dots alignment
+      window.addEventListener("resize", () => {
+        const curView = document.body.getAttribute("data-view") || "home";
+        updateNavDots(curView === "home" ? "home" : "predict");
+      });
+
+      // Initialize route
+      router();
+    });
+  </script>
+
+
+</body></html>
